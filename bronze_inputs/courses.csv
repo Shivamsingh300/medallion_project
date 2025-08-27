@@ -1,201 +1,201 @@
 course_id,course_name,category,price,instructor
-1,AI/ML 101,AI/ML,439,Ms. Garcia
-2,AI/ML 102,AI/ML,92,Ms. Garcia
-3,Finance 103,Finance,126,Dr. Smith
-4,Finance 104,Finance,181,Dr. Brown
-5,Web Development 105,Web Development,103,Prof. Lee
-6,Web Development 106,Web Development,433,Dr. Smith
-7,Business 107,Business,413,Dr. Brown
-8,Data Science 108,Data Science,497,Prof. Lee
-9,Finance 109,Finance,400,Mr. Kumar
-10,Finance 110,Finance,333,Ms. Garcia
-11,Data Science 111,Data Science,546,Mr. Kumar
-12,AI/ML 112,AI/ML,541,Dr. Brown
-13,Finance 113,Finance,462,Prof. Wang
-14,Business 114,Business,521,Dr. Smith
-15,AI/ML 115,AI/ML,146,Prof. Lee
-16,Business 116,Business,486,Prof. Lee
-17,Web Development 117,Web Development,490,Prof. Wang
-18,Business 118,Business,291,Dr. Smith
-19,Business 119,Business,229,Mr. Kumar
-20,Finance 120,Finance,437,Prof. Wang
-21,AI/ML 121,AI/ML,548,Dr. Smith
-22,Design 122,Design,251,Dr. Smith
-23,AI/ML 123,AI/ML,402,Dr. Brown
-24,Data Science 124,Data Science,314,Prof. Lee
-25,Web Development 125,Web Development,203,Prof. Lee
-26,Design 126,Design,112,Dr. Brown
-27,Business 127,Business,175,Prof. Lee
-28,AI/ML 128,AI/ML,108,Prof. Lee
-29,Business 129,Business,129,Prof. Wang
-30,Business 130,Business,320,Ms. Garcia
-31,Design 131,Design,330,Dr. Smith
-32,AI/ML 132,AI/ML,374,Prof. Wang
-33,Web Development 133,Web Development,519,Mr. Kumar
-34,Business 134,Business,229,Mr. Kumar
-35,Finance 135,Finance,323,Dr. Brown
-36,Design 136,Design,100,Ms. Garcia
-37,Business 137,Business,513,Prof. Lee
-38,Web Development 138,Web Development,429,Prof. Lee
-39,Design 139,Design,407,Dr. Brown
-40,Finance 140,Finance,516,Ms. Garcia
-41,Web Development 141,Web Development,147,Mr. Kumar
-42,Business 142,Business,222,Dr. Brown
-43,Data Science 143,Data Science,469,Ms. Garcia
-44,Web Development 144,Web Development,266,Mr. Kumar
-45,Design 145,Design,346,Ms. Garcia
-46,AI/ML 146,AI/ML,184,Dr. Brown
-47,Web Development 147,Web Development,412,Ms. Garcia
-48,Web Development 148,Web Development,340,Prof. Wang
-49,AI/ML 149,AI/ML,317,Prof. Wang
-50,Design 150,Design,123,Prof. Lee
-51,Design 151,Design,88,Mr. Kumar
-52,Finance 152,Finance,186,Dr. Brown
-53,AI/ML 153,AI/ML,508,Prof. Wang
-54,Business 154,Business,94,Prof. Wang
-55,Data Science 155,Data Science,341,Prof. Wang
-56,Finance 156,Finance,454,Dr. Smith
-57,AI/ML 157,AI/ML,467,Mr. Kumar
-58,Web Development 158,Web Development,452,Dr. Smith
-59,Business 159,Business,284,Ms. Garcia
-60,AI/ML 160,AI/ML,464,Prof. Lee
-61,Design 161,Design,54,Ms. Garcia
-62,AI/ML 162,AI/ML,454,Prof. Wang
-63,Data Science 163,Data Science,233,Mr. Kumar
-64,AI/ML 164,AI/ML,191,Mr. Kumar
-65,AI/ML 165,AI/ML,310,Dr. Brown
-66,Design 166,Design,432,Mr. Kumar
-67,Design 167,Design,515,Dr. Brown
-68,Business 168,Business,471,Prof. Lee
-69,Web Development 169,Web Development,537,Dr. Brown
-70,Web Development 170,Web Development,402,Dr. Smith
-71,AI/ML 171,AI/ML,126,Mr. Kumar
-72,AI/ML 172,AI/ML,340,Ms. Garcia
-73,Design 173,Design,439,Dr. Brown
-74,Design 174,Design,508,Mr. Kumar
-75,Web Development 175,Web Development,521,Mr. Kumar
-76,Web Development 176,Web Development,501,Dr. Brown
-77,Business 177,Business,524,Mr. Kumar
-78,Business 178,Business,406,Prof. Lee
-79,Data Science 179,Data Science,513,Mr. Kumar
-80,Business 180,Business,451,Prof. Lee
-81,Web Development 181,Web Development,403,Dr. Brown
-82,Web Development 182,Web Development,118,Prof. Lee
-83,Data Science 183,Data Science,410,Dr. Brown
-84,Data Science 184,Data Science,164,Prof. Wang
-85,AI/ML 185,AI/ML,64,Ms. Garcia
-86,Business 186,Business,536,Dr. Smith
-87,Finance 187,Finance,379,Dr. Smith
-88,Data Science 188,Data Science,323,Ms. Garcia
-89,Business 189,Business,121,Ms. Garcia
-90,Business 190,Business,343,Mr. Kumar
-91,Business 191,Business,197,Dr. Brown
-92,Business 192,Business,210,Dr. Smith
-93,Design 193,Design,149,Dr. Smith
-94,Finance 194,Finance,384,Ms. Garcia
-95,Web Development 195,Web Development,60,Mr. Kumar
-96,Data Science 196,Data Science,178,Dr. Brown
-97,Web Development 197,Web Development,373,Mr. Kumar
-98,Business 198,Business,150,Ms. Garcia
-99,AI/ML 199,AI/ML,323,Prof. Wang
-100,Data Science 200,Data Science,423,Dr. Smith
-101,Design 201,Design,212,Prof. Wang
-102,Business 202,Business,60,Dr. Smith
-103,Design 203,Design,181,Mr. Kumar
-104,Business 204,Business,530,Ms. Garcia
-105,Data Science 205,Data Science,462,Prof. Lee
-106,AI/ML 206,AI/ML,374,Prof. Wang
-107,Finance 207,Finance,122,Ms. Garcia
-108,Web Development 208,Web Development,500,Prof. Lee
-109,AI/ML 209,AI/ML,127,Dr. Smith
-110,AI/ML 210,AI/ML,494,Dr. Brown
-111,Design 211,Design,131,Prof. Wang
-112,Data Science 212,Data Science,60,Prof. Lee
-113,AI/ML 213,AI/ML,55,Ms. Garcia
-114,Data Science 214,Data Science,375,Ms. Garcia
-115,AI/ML 215,AI/ML,423,Dr. Smith
-116,Business 216,Business,59,Dr. Brown
-117,Design 217,Design,402,Prof. Lee
-118,Web Development 218,Web Development,480,Prof. Lee
-119,Business 219,Business,506,Dr. Brown
-120,Data Science 220,Data Science,387,Prof. Wang
-121,Data Science 221,Data Science,496,Prof. Wang
-122,AI/ML 222,AI/ML,489,Prof. Wang
-123,Business 223,Business,491,Prof. Lee
-124,Data Science 224,Data Science,309,Dr. Smith
-125,Web Development 225,Web Development,517,Dr. Smith
-126,Business 226,Business,438,Prof. Wang
-127,Finance 227,Finance,496,Prof. Lee
-128,Business 228,Business,515,Dr. Brown
-129,AI/ML 229,AI/ML,354,Ms. Garcia
-130,Data Science 230,Data Science,219,Dr. Smith
-131,AI/ML 231,AI/ML,334,Mr. Kumar
-132,Business 232,Business,224,Prof. Lee
-133,Data Science 233,Data Science,94,Prof. Wang
-134,Web Development 234,Web Development,168,Prof. Wang
-135,Data Science 235,Data Science,196,Prof. Lee
-136,Design 236,Design,435,Dr. Brown
-137,AI/ML 237,AI/ML,364,Prof. Lee
-138,AI/ML 238,AI/ML,453,Prof. Lee
-139,Finance 239,Finance,331,Dr. Smith
-140,Data Science 240,Data Science,357,Prof. Wang
-141,AI/ML 241,AI/ML,494,Prof. Wang
-142,Data Science 242,Data Science,141,Prof. Lee
-143,Finance 243,Finance,485,Ms. Garcia
-144,Design 244,Design,223,Ms. Garcia
-145,Design 245,Design,266,Dr. Smith
-146,Design 246,Design,174,Ms. Garcia
-147,Finance 247,Finance,87,Prof. Wang
-148,AI/ML 248,AI/ML,325,Ms. Garcia
-149,Design 249,Design,219,Dr. Brown
-150,Finance 250,Finance,217,Prof. Wang
-151,Business 251,Business,536,Ms. Garcia
-152,Business 252,Business,181,Dr. Brown
-153,Data Science 253,Data Science,87,Prof. Lee
-154,Data Science 254,Data Science,361,Prof. Lee
-155,Finance 255,Finance,194,Dr. Smith
-156,Web Development 256,Web Development,480,Dr. Brown
-157,Design 257,Design,256,Prof. Lee
-158,Business 258,Business,346,Ms. Garcia
-159,Design 259,Design,339,Dr. Brown
-160,Web Development 260,Web Development,86,Mr. Kumar
-161,AI/ML 261,AI/ML,393,Prof. Wang
-162,Finance 262,Finance,315,Dr. Smith
-163,AI/ML 263,AI/ML,327,Mr. Kumar
-164,Design 264,Design,485,Prof. Wang
-165,Finance 265,Finance,513,Prof. Wang
-166,Web Development 266,Web Development,302,Dr. Brown
-167,Finance 267,Finance,342,Mr. Kumar
-168,Web Development 268,Web Development,423,Dr. Smith
-169,Finance 269,Finance,166,Dr. Brown
-170,Web Development 270,Web Development,236,Ms. Garcia
-171,Web Development 271,Web Development,501,Mr. Kumar
-172,Web Development 272,Web Development,478,Dr. Brown
-173,Business 273,Business,357,Dr. Smith
-174,Web Development 274,Web Development,545,Prof. Wang
-175,Data Science 275,Data Science,114,Prof. Lee
-176,Business 276,Business,468,Prof. Wang
-177,Business 277,Business,457,Mr. Kumar
-178,AI/ML 278,AI/ML,302,Dr. Brown
-179,Design 279,Design,528,Dr. Smith
-180,AI/ML 280,AI/ML,245,Prof. Wang
-181,Data Science 281,Data Science,266,Prof. Lee
-182,Finance 282,Finance,101,Prof. Lee
-183,Web Development 283,Web Development,381,Dr. Brown
-184,Finance 284,Finance,310,Mr. Kumar
-185,Business 285,Business,318,Mr. Kumar
-186,Data Science 286,Data Science,129,Dr. Brown
-187,Data Science 287,Data Science,508,Dr. Smith
-188,Web Development 288,Web Development,444,Prof. Wang
-189,AI/ML 289,AI/ML,65,Prof. Lee
-190,Business 290,Business,441,Prof. Lee
-191,Design 291,Design,201,Dr. Smith
-192,Finance 292,Finance,108,Dr. Brown
-193,Data Science 293,Data Science,189,Dr. Smith
-194,Web Development 294,Web Development,160,Dr. Brown
-195,Design 295,Design,281,Dr. Smith
-196,AI/ML 296,AI/ML,95,Dr. Brown
-197,AI/ML 297,AI/ML,349,Mr. Kumar
-198,Web Development 298,Web Development,429,Prof. Lee
-199,Finance 299,Finance,215,Ms. Garcia
-200,Design 300,Design,514,Ms. Garcia
+1,AI/ML 101,AI/ML,74,Ms. Rossi
+2,Cybersecurity 102,Cybersecurity,94,Prof. Lee
+3,Web Development 103,Web Development,370,Prof. Ahmed
+4,Web Development 104,Web Development,415,Mr. Kumar
+5,Marketing 105,Marketing,230,Ms. Rossi
+6,Business 106,Business,214,Dr. Chen
+7,Data Science 107,Data Science,87,Prof. Lee
+8,AI/ML 108,AI/ML,2220,Prof. Ahmed
+9,Design 109,Design,94,Prof. Ahmed
+10,Design 110,Design,235,Ms. Garcia
+11,Design 111,Design,190,Ms. Rossi
+12,AI/ML 112,AI/ML,330,Dr. Chen
+13,Design 113,Design,173,Dr. Chen
+14,Data Science 114,Data Science,319,Ms. Rossi
+15,CYBERSECURITY 115,CYBERSECURITY,4670,Ms. Rossi
+16,Business 116,Business,464,Mr. Kumar
+17,Design 117,Design,406,Ms. Garcia
+18,Design 118,Design,127,Ms. Rossi
+19,Data Science 119,Data Science,314,Dr. Smith
+20,Finance 120,Finance,128,Dr. Chen
+21,Marketing 121,Marketing,78,Dr. Smith
+22,web development 122,web development,206,Prof. Ahmed
+23,Web Development 123,Web Development,3240,Ms. Garcia
+24,Cybersecurity 124,Cybersecurity,152,Prof. Ahmed
+25,Finance 125,Finance,278,Prof. Ahmed
+26,Data Science 126,Data Science,411,Ms. Rossi
+27,Business 127,Business,271,Mr. Kumar
+28,Finance 128,Finance,420,Ms. Garcia
+29,Business 129,Business,144,Prof. Ahmed
+30,Design 130,Design,387,Ms. Garcia
+31,Data Science 131,Data Science,196,Dr. Chen
+32,data science 132,data science,1500,Mr. Kumar
+33,Marketing 133,Marketing,371,Ms. Garcia
+34,AI/ML 134,AI/ML,424,Dr. Chen
+35,ai/ml 135,ai/ml,294,Dr. Smith
+36,Web Development 136,Web Development,246,Ms. Rossi
+37,Design 137,Design,69,Dr. Smith
+38,Web Development 138,Web Development,301,Mr. Kumar
+39,AI/ML 139,AI/ML,407,Dr. Chen
+40,Cybersecurity 140,Cybersecurity,303,Ms. Garcia
+41,ai/ml 141,ai/ml,331,Ms. Garcia
+42,Data Science 142,Data Science,250,Ms. Garcia
+43,Business 143,Business,177,Dr. Chen
+44,Data Science 144,Data Science,139,Ms. Garcia
+45,Web Development 145,Web Development,307,Dr. Smith
+46,AI/ML 146,AI/ML,302,Mr. Kumar
+47,Finance 147,Finance,1300,Prof. Lee
+48,Finance 148,Finance,154,Prof. Ahmed
+49,Web Development 149,Web Development,166,Dr. Chen
+50,Finance 150,Finance,94,Mr. Kumar
+51,Cybersecurity 151,Cybersecurity,428,Mr. Kumar
+52,AI/ML 152,AI/ML,191,Ms. Garcia
+53,Data Science 153,Data Science,146,Prof. Lee
+54,DESIGN 154,DESIGN,487,Dr. Chen
+55,Business 155,Business,323,Prof. Lee
+56,Design 156,Design,331,Dr. Smith
+57,Web Development 157,Web Development,116,Prof. Lee
+58,Design 158,Design,311,Ms. Garcia
+59,Finance 159,Finance,385,Mr. Kumar
+60,Business 160,Business,428,Ms. Garcia
+61,Business 161,Business,493,Prof. Lee
+62,Data Science 162,Data Science,2240,Mr. Kumar
+63,Data Science 163,Data Science,173,Mr. Kumar
+64,Data Science 164,Data Science,181,Prof. Lee
+65,Web Development 165,Web Development,100,Ms. Rossi
+66,Cybersecurity 166,Cybersecurity,421,Mr. Kumar
+67,AI/ML 167,AI/ML,93,Mr. Kumar
+68,Finance 168,Finance,411,Mr. Kumar
+69,Cybersecurity 169,Cybersecurity,421,Ms. Garcia
+70,Business 170,Business,101,Mr. Kumar
+71,Marketing 171,Marketing,199,Prof. Ahmed
+72,Design 172,Design,476,Ms. Garcia
+73,Design 173,Design,358,Prof. Lee
+74,Web Development 174,Web Development,199,Ms. Rossi
+75,Finance 175,Finance,371,Dr. Smith
+76,AI/ML 176,AI/ML,250,Dr. Chen
+77,Design 177,Design,346,Prof. Lee
+78,Marketing 178,Marketing,133,Prof. Lee
+79,Web Development 179,Web Development,386,Dr. Smith
+80,Business 180,Business,289,Ms. Garcia
+81,Business 181,Business,2440,Dr. Smith
+82,Business 182,Business,477,Prof. Ahmed
+83,Finance 183,Finance,336,Prof. Lee
+84,Marketing 184,Marketing,2020,Ms. Garcia
+85,Marketing 185,Marketing,399,Dr. Smith
+86,Cybersecurity 186,Cybersecurity,394,Mr. Kumar
+87,Cybersecurity 187,Cybersecurity,429,Prof. Ahmed
+88,Marketing 188,Marketing,343,Ms. Garcia
+89,Marketing 189,Marketing,342,Dr. Chen
+90,Data Science 190,Data Science,194,Ms. Rossi
+91,Cybersecurity 191,Cybersecurity,51,Prof. Lee
+92,Data Science 192,Data Science,94,Dr. Chen
+93,Design 193,Design,114,Mr. Kumar
+94,Design 194,Design,498,Prof. Ahmed
+95,Web Development 195,Web Development,472,Dr. Smith
+96,Business 196,Business,408,Ms. Garcia
+97,Design 197,Design,489,Dr. Smith
+98,Business 198,Business,255,Prof. Lee
+99,Cybersecurity 199,Cybersecurity,112,Dr. Smith
+100,Marketing 200,Marketing,332,Dr. Chen
+101,Web Development 201,Web Development,1070,Dr. Smith
+102,Data Science 202,Data Science,126,Dr. Chen
+103,Data Science 203,Data Science,363,Prof. Lee
+104,AI/ML 204,AI/ML,177,Dr. Chen
+105,AI/ML 205,AI/ML,201,Ms. Rossi
+106,Web Development 206,Web Development,366,Prof. Ahmed
+107,Data Science 207,Data Science,475,Dr. Chen
+108,Marketing 208,Marketing,163,Ms. Rossi
+109,Business 209,Business,299,Ms. Rossi
+110,Finance 210,Finance,144,Ms. Rossi
+111,Data Science 211,Data Science,256,Ms. Garcia
+112,Design 212,Design,267,Prof. Ahmed
+113,Data Science 213,Data Science,466,Ms. Garcia
+114,Design 214,Design,140,Mr. Kumar
+115,AI/ML 215,AI/ML,325,Ms. Rossi
+116,Data Science 216,Data Science,117,Ms. Garcia
+117,AI/ML 217,AI/ML,4410,Prof. Ahmed
+118,Finance 218,Finance,435,Dr. Smith
+119,Web Development 219,Web Development,2980,Prof. Ahmed
+120,Cybersecurity 220,Cybersecurity,269,Mr. Kumar
+121,ai/ml 221,ai/ml,262,Prof. Lee
+122,ai/ml 222,ai/ml,499,Dr. Smith
+123,Finance 223,Finance,371,Dr. Chen
+124,Web Development 224,Web Development,156,Mr. Kumar
+125,Design 225,Design,76,Ms. Garcia
+126,Business 226,Business,268,Ms. Rossi
+127,Marketing 227,Marketing,52,Dr. Chen
+128,Design 228,Design,423,Dr. Smith
+129,Marketing 229,Marketing,437,Dr. Chen
+130,Marketing 230,Marketing,313,Mr. Kumar
+131,Marketing 231,Marketing,360,Prof. Lee
+132,AI/ML 232,AI/ML,169,Prof. Lee
+133,Marketing 233,Marketing,417,Prof. Lee
+134,Web Development 234,Web Development,450,Dr. Chen
+135,Cybersecurity 235,Cybersecurity,102,Mr. Kumar
+136,Cybersecurity 236,Cybersecurity,424,Ms. Rossi
+137,finance 237,finance,4210,Dr. Smith
+138,Marketing 238,Marketing,109,Mr. Kumar
+139,Marketing 239,Marketing,134,Prof. Lee
+140,Design 240,Design,204,Prof. Lee
+141,Data Science 241,Data Science,173,Ms. Garcia
+142,Marketing 242,Marketing,140,Ms. Rossi
+143,Finance 243,Finance,262,Dr. Chen
+144,Business 244,Business,364,Ms. Rossi
+145,Cybersecurity 245,Cybersecurity,97,Dr. Smith
+146,Design 246,Design,256,Dr. Chen
+147,Finance 247,Finance,322,Dr. Chen
+148,Finance 248,Finance,337,Prof. Lee
+149,Cybersecurity 249,Cybersecurity,193,Mr. Kumar
+150,marketing 250,marketing,160,Dr. Smith
+151,Design 251,Design,311,Dr. Chen
+152,Finance 252,Finance,432,Prof. Ahmed
+153,Marketing 253,Marketing,125,Ms. Garcia
+154,AI/ML 254,AI/ML,4830,Ms. Garcia
+155,Data Science 255,Data Science,386,Prof. Lee
+156,Marketing 256,Marketing,76,Ms. Garcia
+157,Business 257,Business,491,Dr. Chen
+158,MARKETING 258,MARKETING,154,Prof. Ahmed
+159,Business 259,Business,77,Ms. Rossi
+160,Data Science 260,Data Science,253,Prof. Ahmed
+161,Design 261,Design,105,Ms. Rossi
+162,Cybersecurity 262,Cybersecurity,324,Mr. Kumar
+163,Web Development 263,Web Development,114,Prof. Ahmed
+164,Finance 264,Finance,467,Ms. Garcia
+165,AI/ML 265,AI/ML,110,Ms. Rossi
+166,Marketing 266,Marketing,243,Ms. Garcia
+167,Business 267,Business,216,Prof. Ahmed
+168,Finance 268,Finance,160,Prof. Ahmed
+169,Design 269,Design,174,Mr. Kumar
+170,Data Science 270,Data Science,4460,Ms. Garcia
+171,Cybersecurity 271,Cybersecurity,499,Prof. Lee
+172,Web Development 272,Web Development,341,Dr. Smith
+173,CYBERSECURITY 273,CYBERSECURITY,113,Prof. Lee
+174,Finance 274,Finance,219,Prof. Ahmed
+175,Design 275,Design,137,Dr. Smith
+176,Marketing 276,Marketing,402,Dr. Chen
+177,Business 277,Business,500,Ms. Garcia
+178,Business 278,Business,168,Ms. Garcia
+179,Web Development 279,Web Development,278,Prof. Lee
+180,Data Science 280,Data Science,359,Prof. Lee
+181,Data Science 281,Data Science,484,Mr. Kumar
+182,CYBERSECURITY 282,CYBERSECURITY,339,Prof. Lee
+183,AI/ML 283,AI/ML,343,Ms. Garcia
+184,Marketing 284,Marketing,300,Prof. Ahmed
+185,Marketing 285,Marketing,481,Ms. Rossi
+186,DATA SCIENCE 286,DATA SCIENCE,447,Dr. Smith
+187,marketing 287,marketing,268,Dr. Smith
+188,Data Science 288,Data Science,165,Ms. Garcia
+189,Marketing 289,Marketing,125,Ms. Garcia
+190,AI/ML 290,AI/ML,221,Ms. Garcia
+191,Cybersecurity 291,Cybersecurity,212,Dr. Chen
+192,Business 292,Business,302,Ms. Garcia
+193,Marketing 293,Marketing,476,Dr. Chen
+194,Marketing 294,Marketing,1620,Ms. Garcia
+195,WEB DEVELOPMENT 295,WEB DEVELOPMENT,126,Dr. Smith
+196,Business 296,Business,1920,Ms. Garcia
+197,Finance 297,Finance,78,Dr. Chen
+198,Business 298,Business,353,Mr. Kumar
+199,AI/ML 299,AI/ML,670,Mr. Kumar
+200,Finance 300,Finance,94,Ms. Garcia

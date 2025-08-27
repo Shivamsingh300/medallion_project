@@ -1,0 +1,74 @@
+2025-08-27 14:00:52,993 - INFO - Starting ETL Pipeline
+2025-08-27 14:00:52,993 - INFO - Loading Bronze Layer
+2025-08-27 14:00:53,002 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-27 14:00:53,317 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-27 14:00:53,333 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-27 14:00:53,557 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-27 14:00:53,757 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-27 14:00:54,009 - INFO - Bronze Layer loaded into schema: bronze
+2025-08-27 14:00:54,010 - INFO - Bronze Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 14:00:54,010 - INFO - Building Silver Layer
+2025-08-27 14:00:54,021 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-27 14:00:54,021 - INFO - Starting silver layer build.
+2025-08-27 14:00:54,101 - INFO - Silver tables truncated.
+2025-08-27 14:00:54,786 - WARNING - 17 faulty rows in courses - Price out of range [0,500]
+2025-08-27 14:00:56,978 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-27 14:00:59,542 - WARNING - 5415 faulty rows in payments - Amount out of range [0,500]
+2025-08-27 14:01:05,651 - WARNING - 13533 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-27 14:01:07,603 - WARNING - 4536 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-27 14:01:09,671 - WARNING - 4492 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-27 14:01:15,357 - INFO - Silver layer build completed successfully.
+2025-08-27 14:01:15,364 - INFO - Silver Layer built into schema: silver
+2025-08-27 14:01:15,364 - INFO - Silver Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 14:01:15,364 - INFO - ETL Pipeline Completed Successfully
+2025-08-27 14:01:51,096 - INFO - Starting ETL Pipeline
+2025-08-27 14:01:51,096 - INFO - Loading Bronze Layer
+2025-08-27 14:01:51,105 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-27 14:01:51,408 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-27 14:01:51,424 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-27 14:01:51,645 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-27 14:01:51,859 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-27 14:01:52,102 - INFO - Bronze Layer loaded into schema: bronze
+2025-08-27 14:01:52,102 - INFO - Bronze Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 14:01:52,102 - INFO - Building Silver Layer
+2025-08-27 14:01:52,113 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-27 14:01:52,113 - INFO - Starting silver layer build.
+2025-08-27 14:01:52,202 - INFO - Silver tables truncated.
+2025-08-27 14:01:52,923 - WARNING - 17 faulty rows in courses - Price out of range [0,500]
+2025-08-27 14:01:55,122 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-27 14:01:57,269 - WARNING - 5415 faulty rows in payments - Amount out of range [0,500]
+2025-08-27 14:02:03,222 - WARNING - 13533 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-27 14:02:05,127 - WARNING - 4536 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-27 14:02:07,002 - WARNING - 4492 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-27 14:02:12,721 - INFO - Silver layer build completed successfully.
+2025-08-27 14:02:12,732 - INFO - Silver Layer built into schema: silver
+2025-08-27 14:02:12,732 - INFO - Silver Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 14:02:12,733 - INFO - ETL Pipeline Completed Successfully
+2025-08-27 14:21:06,644 - INFO - Starting ETL Pipeline
+2025-08-27 14:21:06,644 - INFO - Loading Bronze Layer
+2025-08-27 14:21:06,653 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-27 14:21:06,968 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-27 14:21:06,982 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-27 14:21:07,187 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-27 14:21:07,388 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-27 14:21:07,651 - INFO - Bronze Layer loaded into schema: bronze
+2025-08-27 14:21:07,651 - INFO - Bronze Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 14:21:07,651 - INFO - Building Silver Layer
+2025-08-27 14:21:07,659 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-27 14:21:07,659 - INFO - Starting silver layer build.
+2025-08-27 14:21:07,740 - INFO - Silver tables truncated.
+2025-08-27 14:21:10,884 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-27 14:21:13,110 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-27 14:21:16,282 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-27 14:21:16,386 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-27 14:21:16,395 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-27 14:21:18,882 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-27 14:21:21,023 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-27 14:21:23,621 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-27 14:21:51,840 - WARNING - 49585 faulty rows in payments - Invalid method enum
+2025-08-27 14:22:00,979 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-27 14:22:04,830 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-27 14:22:08,751 - INFO - Silver layer build completed successfully.
+2025-08-27 14:22:08,760 - INFO - Silver Layer built into schema: silver
+2025-08-27 14:22:08,760 - INFO - Silver Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 14:22:08,760 - INFO - ETL Pipeline Completed Successfully
