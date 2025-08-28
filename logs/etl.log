@@ -72,3 +72,434 @@
 2025-08-27 14:22:08,760 - INFO - Silver Layer built into schema: silver
 2025-08-27 14:22:08,760 - INFO - Silver Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
 2025-08-27 14:22:08,760 - INFO - ETL Pipeline Completed Successfully
+2025-08-27 20:03:39,483 - INFO - 🚀 Starting ETL Pipeline
+2025-08-27 20:03:39,483 - INFO - 📥 Loading Bronze Layer
+2025-08-27 20:03:39,492 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-27 20:03:39,835 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-27 20:03:39,852 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-27 20:03:40,094 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-27 20:03:40,368 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-27 20:03:40,703 - INFO - ✅ Bronze Layer loaded into schema: bronze
+2025-08-27 20:03:40,703 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 20:03:40,703 - INFO - ⚙️ Building Silver Layer
+2025-08-27 20:03:40,711 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-27 20:03:40,711 - INFO - Starting silver layer build.
+2025-08-27 20:03:40,786 - INFO - Silver tables truncated.
+2025-08-27 20:03:44,288 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-27 20:03:46,861 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-27 20:03:49,888 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-27 20:03:49,990 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-27 20:03:49,998 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-27 20:03:52,655 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-27 20:03:54,908 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-27 20:03:57,419 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-27 20:03:59,700 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-08-27 20:04:06,876 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-27 20:04:10,971 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-27 20:04:14,672 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-27 20:04:20,560 - INFO - Silver layer build completed successfully.
+2025-08-27 20:04:20,568 - INFO - ✅ Silver Layer built into schema: silver
+2025-08-27 20:04:20,568 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 20:04:20,569 - INFO - 📊 Building Gold Layer
+2025-08-27 20:04:20,575 - INFO - Schema 'gold' ensured.
+2025-08-27 20:04:20,576 - INFO - Starting gold layer build.
+2025-08-27 20:04:20,586 - INFO - Dropped existing student_overview table.
+2025-08-27 20:04:20,586 - INFO - Dropped existing students_with_no_payments table.
+2025-08-27 20:04:20,587 - INFO - Dropped existing student_engagement table.
+2025-08-27 20:04:20,587 - INFO - Dropped existing top_students_by_score table.
+2025-08-27 20:04:20,587 - INFO - Dropped existing top_students_by_spending table.
+2025-08-27 20:04:20,588 - INFO - Dropped existing course_payments_summary table.
+2025-08-27 20:04:20,588 - INFO - Dropped existing course_assessment_summary table.
+2025-08-27 20:04:20,588 - INFO - Dropped existing payment_method_distribution table.
+2025-08-27 20:04:20,589 - INFO - Dropped existing students_with_active_courses table.
+2025-08-27 20:04:20,589 - INFO - Dropped existing students_with_courses_not_attempted table.
+2025-08-27 20:04:20,589 - INFO - Dropped existing revenue_per_course table.
+2025-08-27 20:04:20,590 - INFO - Dropped existing dropout_rate_per_course table.
+2025-08-27 20:04:20,590 - INFO - Dropped existing total_spending_per_student table.
+2025-08-27 20:04:20,590 - INFO - Dropped existing pass_fail_rate table.
+2025-08-27 20:04:20,638 - INFO - Gold table student_overview built with 49512 rows.
+2025-08-27 20:04:20,684 - INFO - Gold table students_with_no_payments built with 23615 rows.
+2025-08-27 20:04:20,724 - INFO - Gold table student_engagement built with 1 rows.
+2025-08-27 20:04:20,825 - INFO - Gold table top_students_by_score built with 10 rows.
+2025-08-27 20:04:20,923 - INFO - Gold table top_students_by_spending built with 10 rows.
+2025-08-27 20:04:20,952 - INFO - Gold table course_payments_summary built with 183 rows.
+2025-08-27 20:04:20,969 - INFO - Gold table course_assessment_summary built with 183 rows.
+2025-08-27 20:04:20,985 - INFO - Gold table payment_method_distribution built with 4 rows.
+2025-08-27 20:04:21,013 - INFO - Gold table students_with_active_courses built with 10027 rows.
+2025-08-27 20:04:21,018 - ERROR - Error while building gold layer: (psycopg2.errors.UndefinedColumn) column a.enrollment_id does not exist
+LINE 9: ...EFT JOIN silver.assessment a ON e.enrollment_id = a.enrollme...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "e.enrollment_id".
+
+[SQL: 
+        CREATE TABLE IF NOT EXISTS gold.students_with_courses_not_attempted AS
+        SELECT
+            s.student_id,
+            s.name AS student_name,
+            COUNT(e.enrollment_id) AS courses_not_attempted_count
+        FROM silver.students s
+        JOIN silver.enrollment e ON s.student_id = e.student_id
+        LEFT JOIN silver.assessment a ON e.enrollment_id = a.enrollment_id
+        WHERE a.enrollment_id IS NULL
+        GROUP BY s.student_id, s.name
+        ORDER BY courses_not_attempted_count DESC;
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-27 20:07:44,661 - INFO - 🚀 Starting ETL Pipeline
+2025-08-27 20:07:44,662 - INFO - 📥 Loading Bronze Layer
+2025-08-27 20:07:44,671 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-27 20:07:45,000 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-27 20:07:45,016 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-27 20:07:45,248 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-27 20:07:45,481 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-27 20:07:45,783 - INFO - ✅ Bronze Layer loaded into schema: bronze
+2025-08-27 20:07:45,783 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 20:07:45,784 - INFO - ⚙️ Building Silver Layer
+2025-08-27 20:07:45,792 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-27 20:07:45,792 - INFO - Starting silver layer build.
+2025-08-27 20:07:45,872 - INFO - Silver tables truncated.
+2025-08-27 20:07:49,173 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-27 20:07:51,556 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-27 20:07:54,529 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-27 20:07:54,644 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-27 20:07:54,654 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-27 20:07:57,274 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-27 20:07:59,682 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-27 20:08:02,372 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-27 20:08:04,614 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-08-27 20:08:11,915 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-27 20:08:15,997 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-27 20:08:20,384 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-27 20:08:26,880 - INFO - Silver layer build completed successfully.
+2025-08-27 20:08:26,892 - INFO - ✅ Silver Layer built into schema: silver
+2025-08-27 20:08:26,892 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-27 20:08:26,892 - INFO - 📊 Building Gold Layer
+2025-08-27 20:08:26,905 - INFO - Schema 'gold' ensured.
+2025-08-27 20:08:26,905 - INFO - Starting gold layer build.
+2025-08-27 20:08:26,920 - INFO - Dropped existing student_overview table.
+2025-08-27 20:08:26,921 - INFO - Dropped existing students_with_no_payments table.
+2025-08-27 20:08:26,922 - INFO - Dropped existing student_engagement table.
+2025-08-27 20:08:26,923 - INFO - Dropped existing top_students_by_score table.
+2025-08-27 20:08:26,924 - INFO - Dropped existing top_students_by_spending table.
+2025-08-27 20:08:26,925 - INFO - Dropped existing course_payments_summary table.
+2025-08-27 20:08:26,926 - INFO - Dropped existing course_assessment_summary table.
+2025-08-27 20:08:26,927 - INFO - Dropped existing payment_method_distribution table.
+2025-08-27 20:08:26,928 - INFO - Dropped existing students_with_active_courses table.
+2025-08-27 20:08:26,929 - INFO - Dropped existing students_with_courses_not_attempted table.
+2025-08-27 20:08:26,930 - INFO - Dropped existing revenue_per_course table.
+2025-08-27 20:08:26,931 - INFO - Dropped existing dropout_rate_per_course table.
+2025-08-27 20:08:26,932 - INFO - Dropped existing total_spending_per_student table.
+2025-08-27 20:08:26,933 - INFO - Dropped existing pass_fail_rate table.
+2025-08-27 20:08:27,000 - INFO - Gold table student_overview built with 49512 rows.
+2025-08-27 20:08:27,096 - INFO - Gold table students_with_no_payments built with 23615 rows.
+2025-08-27 20:08:27,170 - INFO - Gold table student_engagement built with 1 rows.
+2025-08-27 20:08:27,294 - INFO - Gold table top_students_by_score built with 10 rows.
+2025-08-27 20:08:27,409 - INFO - Gold table top_students_by_spending built with 10 rows.
+2025-08-27 20:08:27,469 - INFO - Gold table course_payments_summary built with 183 rows.
+2025-08-27 20:08:27,489 - INFO - Gold table course_assessment_summary built with 183 rows.
+2025-08-27 20:08:27,507 - INFO - Gold table payment_method_distribution built with 4 rows.
+2025-08-27 20:08:27,545 - INFO - Gold table students_with_active_courses built with 10027 rows.
+2025-08-27 20:08:27,651 - INFO - Gold table students_with_courses_not_attempted built with 24183 rows.
+2025-08-27 20:08:27,680 - INFO - Gold table revenue_per_course built with 183 rows.
+2025-08-27 20:08:27,697 - INFO - Gold table dropout_rate_per_course built with 183 rows.
+2025-08-27 20:08:27,781 - INFO - Gold table total_spending_per_student built with 25897 rows.
+2025-08-27 20:08:27,808 - INFO - Gold table pass_fail_rate built with 183 rows.
+2025-08-27 20:08:27,863 - INFO - Student count consistency: {'silver_students': 49512, 'gold_students': 49512}
+2025-08-27 20:08:27,875 - INFO - Total revenue reconciliation: {'silver_total_revenue': 10086604.0, 'gold_total_revenue': 10086604.0}
+2025-08-27 20:08:27,876 - INFO - Gold layer build completed successfully with validation.
+2025-08-27 20:08:27,876 - INFO - ✅ Gold Layer built into schema: gold
+2025-08-27 20:08:27,876 - INFO - Tables: ['student_overview', 'students_with_no_payments', 'student_engagement', 'top_students_by_score', 'top_students_by_spending', 'course_payments_summary', 'course_assessment_summary', 'payment_method_distribution', 'students_with_active_courses', 'students_with_courses_not_attempted', 'revenue_per_course', 'dropout_rate_per_course', 'total_spending_per_student', 'pass_fail_rate']
+2025-08-27 20:08:27,876 - INFO - 🎉 ETL Pipeline Completed Successfully
+2025-08-28 12:30:18,477 - INFO - 🚀 Starting ETL Pipeline
+2025-08-28 12:30:18,477 - INFO - 📥 Loading Bronze Layer
+2025-08-28 12:30:18,490 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-28 12:30:18,844 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-28 12:30:18,860 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-28 12:30:19,111 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-28 12:30:19,370 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-28 12:30:19,669 - INFO - ✅ Bronze Layer loaded into schema: bronze
+2025-08-28 12:30:19,669 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 12:30:19,669 - INFO - ⚙️ Building Silver Layer
+2025-08-28 12:30:19,680 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-28 12:30:19,680 - INFO - Starting silver layer build.
+2025-08-28 12:30:19,759 - INFO - Silver tables truncated.
+2025-08-28 12:30:22,660 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-28 12:30:24,819 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-28 12:30:27,567 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-28 12:30:27,667 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-28 12:30:27,677 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-28 12:30:30,067 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-28 12:30:32,073 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-28 12:30:34,466 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-28 12:30:36,491 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-08-28 12:30:43,592 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-28 12:30:48,178 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-28 12:30:51,746 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-28 12:30:57,430 - INFO - Silver layer build completed successfully.
+2025-08-28 12:30:57,440 - INFO - ✅ Silver Layer built into schema: silver
+2025-08-28 12:30:57,440 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 12:30:57,440 - INFO - 📊 Building Gold Layer
+2025-08-28 12:30:57,456 - ERROR - Error creating schema: connection to server at "db.gtqgeindnvipmqvsfhta.supabase.co" (2406:da1a:6b0:f60a:ff17:cc95:2a3:bd53), port 5432 failed: Network is unreachable
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-08-28 12:45:34,821 - INFO - 🚀 Starting ETL Pipeline
+2025-08-28 12:45:34,821 - INFO - 📥 Loading Bronze Layer
+2025-08-28 12:47:05,953 - INFO - 🚀 Starting ETL Pipeline
+2025-08-28 12:47:05,953 - INFO - 📥 Loading Bronze Layer
+2025-08-28 14:11:29,406 - INFO - 🚀 Starting ETL Pipeline
+2025-08-28 14:11:29,406 - INFO - 📥 Loading Bronze Layer
+2025-08-28 14:11:29,420 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-28 14:11:29,739 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-28 14:11:29,762 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-28 14:11:30,002 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-28 14:11:30,270 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-28 14:11:30,578 - INFO - ✅ Bronze Layer loaded into schema: bronze
+2025-08-28 14:11:30,578 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 14:11:30,578 - INFO - ⚙️ Building Silver Layer
+2025-08-28 14:11:30,598 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-28 14:11:30,599 - INFO - Starting silver layer build.
+2025-08-28 14:11:30,655 - ERROR - Error while building silver layer: name 'pd' is not defined
+2025-08-28 14:27:00,811 - INFO - 🚀 Starting ETL Pipeline
+2025-08-28 14:27:00,811 - INFO - 📥 Loading Bronze Layer (local)
+2025-08-28 14:27:00,819 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-28 14:27:01,162 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-28 14:27:01,177 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-28 14:27:01,454 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-28 14:27:01,681 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-28 14:27:01,969 - INFO - ✅ Bronze Layer loaded into schema: bronze
+2025-08-28 14:27:01,969 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 14:27:01,969 - INFO - ⚙️ Building Silver Layer (local)
+2025-08-28 14:27:01,977 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-28 14:27:01,977 - INFO - Starting silver layer build.
+2025-08-28 14:27:02,009 - ERROR - Error while building silver layer: name 'pd' is not defined
+2025-08-28 14:27:55,838 - INFO - 🚀 Starting ETL Pipeline
+2025-08-28 14:27:55,839 - INFO - 📥 Loading Bronze Layer (local)
+2025-08-28 14:27:55,847 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-28 14:27:56,185 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-28 14:27:56,201 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-28 14:27:56,456 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-28 14:27:56,683 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-28 14:27:56,970 - INFO - ✅ Bronze Layer loaded into schema: bronze
+2025-08-28 14:27:56,970 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 14:27:56,970 - INFO - ⚙️ Building Silver Layer (local)
+2025-08-28 14:27:56,977 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-28 14:27:56,978 - INFO - Starting silver layer build.
+2025-08-28 14:27:57,010 - ERROR - Error while building silver layer: name 'pd' is not defined
+2025-08-28 14:31:19,014 - INFO - 🚀 Starting ETL Pipeline
+2025-08-28 14:31:19,015 - INFO - 📥 Loading Bronze Layer (local)
+2025-08-28 14:31:19,023 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv into bronze.students
+2025-08-28 14:31:19,377 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv into bronze.courses
+2025-08-28 14:31:19,395 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv into bronze.enrollment
+2025-08-28 14:31:19,647 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv into bronze.assessment
+2025-08-28 14:31:19,898 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv into bronze.payments
+2025-08-28 14:31:20,182 - INFO - ✅ Bronze Layer loaded into schema: bronze
+2025-08-28 14:31:20,182 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 14:31:20,182 - INFO - ⚙️ Building Silver Layer (local)
+2025-08-28 14:31:20,190 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-28 14:31:20,190 - INFO - Starting silver layer build.
+2025-08-28 14:31:20,272 - INFO - Silver tables truncated.
+2025-08-28 14:31:23,271 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-28 14:31:25,327 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-28 14:31:27,986 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-28 14:31:28,079 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-28 14:31:28,086 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-28 14:31:30,357 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-28 14:31:32,332 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-28 14:31:34,546 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-28 14:31:36,469 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-08-28 14:31:42,966 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-28 14:31:46,581 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-28 14:31:50,257 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-28 14:31:56,173 - INFO - Silver layer build completed successfully.
+2025-08-28 14:31:56,180 - INFO - ✅ Silver Layer built into schema: silver
+2025-08-28 14:31:56,180 - INFO - Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 14:31:56,181 - INFO - 📊 Building Gold Layer (Supabase)
+2025-08-28 14:31:56,181 - INFO - 🔗 Using Supabase connection: postgres.gtqgeindnvipmqvsfhta@aws-1-ap-south-1.pooler.supabase.com:5432/postgres
+2025-08-28 14:31:56,771 - INFO - Schema 'gold' ensured.
+2025-08-28 14:31:56,772 - INFO - Starting gold layer build.
+2025-08-28 14:31:57,325 - INFO - Dropped existing student_overview table.
+2025-08-28 14:31:57,356 - INFO - Dropped existing students_with_no_payments table.
+2025-08-28 14:31:57,385 - INFO - Dropped existing student_engagement table.
+2025-08-28 14:31:57,415 - INFO - Dropped existing top_students_by_score table.
+2025-08-28 14:31:57,443 - INFO - Dropped existing top_students_by_spending table.
+2025-08-28 14:31:57,472 - INFO - Dropped existing course_payments_summary table.
+2025-08-28 14:31:57,501 - INFO - Dropped existing course_assessment_summary table.
+2025-08-28 14:31:57,529 - INFO - Dropped existing payment_method_distribution table.
+2025-08-28 14:31:57,557 - INFO - Dropped existing students_with_active_courses table.
+2025-08-28 14:31:57,584 - INFO - Dropped existing students_with_courses_not_attempted table.
+2025-08-28 14:31:57,612 - INFO - Dropped existing revenue_per_course table.
+2025-08-28 14:31:57,642 - INFO - Dropped existing dropout_rate_per_course table.
+2025-08-28 14:31:57,670 - INFO - Dropped existing total_spending_per_student table.
+2025-08-28 14:31:57,705 - INFO - Dropped existing pass_fail_rate table.
+2025-08-28 14:31:57,764 - ERROR - Error while building gold layer: (psycopg2.errors.UndefinedTable) relation "silver.students" does not exist
+LINE 9:         FROM silver.students s
+                     ^
+
+[SQL: 
+        CREATE TABLE IF NOT EXISTS gold.student_overview AS
+        SELECT
+            s.student_id,
+            s.name,
+            s.email,
+            s.city,
+            s.signup_date
+        FROM silver.students s
+        ORDER BY s.student_id;
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-28 14:46:08,927 - INFO - 🚀 Starting ETL Pipeline
+2025-08-28 14:46:08,927 - INFO - 📥 Bronze Layer (local)
+2025-08-28 14:46:08,936 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv → bronze.students
+2025-08-28 14:46:09,260 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv → bronze.courses
+2025-08-28 14:46:09,286 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv → bronze.enrollment
+2025-08-28 14:46:09,523 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv → bronze.assessment
+2025-08-28 14:46:09,748 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv → bronze.payments
+2025-08-28 14:46:10,029 - INFO - ✅ Bronze Layer ready → Schema: bronze, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 14:46:10,029 - INFO - ⚙️ Silver Layer (local)
+2025-08-28 14:46:10,038 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-28 14:46:10,038 - INFO - Starting silver layer build.
+2025-08-28 14:46:10,120 - INFO - Silver tables truncated.
+2025-08-28 14:46:13,085 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-28 14:46:15,175 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-28 14:46:17,954 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-28 14:46:18,049 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-28 14:46:18,058 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-28 14:46:20,407 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-28 14:46:22,435 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-28 14:46:24,633 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-28 14:46:26,588 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-08-28 14:46:33,016 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-28 14:46:36,758 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-28 14:46:39,992 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-28 14:46:45,634 - INFO - Silver layer build completed successfully.
+2025-08-28 14:46:45,641 - INFO - ✅ Silver Layer ready → Schema: silver, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 14:46:45,642 - INFO - 📊 Gold Layer (Supabase)
+2025-08-28 14:46:45,835 - INFO - ✅ Supabase connection successful.
+2025-08-28 14:46:45,835 - INFO - 🔗 Connecting as postgres.gtqgeindnvipmqvsfhta@aws-1-ap-south-1.pooler.supabase.com:5432/postgres
+2025-08-28 14:46:46,116 - INFO - Schema 'gold' ensured in Supabase.
+2025-08-28 14:46:46,116 - INFO - Starting gold layer build (local Silver → Supabase Gold).
+2025-08-28 14:46:46,620 - INFO - Dropped existing student_overview table in Supabase.
+2025-08-28 14:46:46,652 - INFO - Dropped existing students_with_no_payments table in Supabase.
+2025-08-28 14:46:46,680 - INFO - Dropped existing student_engagement table in Supabase.
+2025-08-28 14:46:46,709 - INFO - Dropped existing top_students_by_score table in Supabase.
+2025-08-28 14:46:46,737 - INFO - Dropped existing top_students_by_spending table in Supabase.
+2025-08-28 14:46:46,765 - INFO - Dropped existing course_payments_summary table in Supabase.
+2025-08-28 14:46:46,795 - INFO - Dropped existing course_assessment_summary table in Supabase.
+2025-08-28 14:46:46,831 - INFO - Dropped existing payment_method_distribution table in Supabase.
+2025-08-28 14:46:46,861 - INFO - Dropped existing students_with_active_courses table in Supabase.
+2025-08-28 14:46:46,890 - INFO - Dropped existing students_with_courses_not_attempted table in Supabase.
+2025-08-28 14:46:46,923 - INFO - Dropped existing revenue_per_course table in Supabase.
+2025-08-28 14:46:46,953 - INFO - Dropped existing dropout_rate_per_course table in Supabase.
+2025-08-28 14:46:46,982 - INFO - Dropped existing total_spending_per_student table in Supabase.
+2025-08-28 14:46:47,010 - INFO - Dropped existing pass_fail_rate table in Supabase.
+2025-08-28 14:46:47,044 - INFO - Building student_overview...
+2025-08-28 14:46:51,262 - INFO - Gold table student_overview built with 49512 rows.
+2025-08-28 14:46:51,263 - INFO - Building students_with_no_payments...
+2025-08-28 14:46:52,800 - INFO - Gold table students_with_no_payments built with 23615 rows.
+2025-08-28 14:46:52,800 - INFO - Building student_engagement...
+2025-08-28 14:46:53,012 - INFO - Gold table student_engagement built with 1 rows.
+2025-08-28 14:46:53,013 - INFO - Building top_students_by_score...
+2025-08-28 14:46:54,962 - INFO - Gold table top_students_by_score built with 27903 rows.
+2025-08-28 14:46:54,963 - INFO - Building top_students_by_spending...
+2025-08-28 14:46:57,334 - INFO - Gold table top_students_by_spending built with 25897 rows.
+2025-08-28 14:46:57,334 - INFO - Building course_payments_summary...
+2025-08-28 14:46:57,542 - INFO - Gold table course_payments_summary built with 183 rows.
+2025-08-28 14:46:57,542 - INFO - Building course_assessment_summary...
+2025-08-28 14:46:57,752 - INFO - Gold table course_assessment_summary built with 183 rows.
+2025-08-28 14:46:57,752 - INFO - Building payment_method_distribution...
+2025-08-28 14:46:57,948 - INFO - Gold table payment_method_distribution built with 4 rows.
+2025-08-28 14:46:57,949 - INFO - Building students_with_active_courses...
+2025-08-28 14:46:58,792 - INFO - Gold table students_with_active_courses built with 10027 rows.
+2025-08-28 14:46:58,792 - INFO - Building students_with_courses_not_attempted...
+2025-08-28 14:47:00,607 - INFO - Gold table students_with_courses_not_attempted built with 24183 rows.
+2025-08-28 14:47:00,607 - INFO - Building revenue_per_course...
+2025-08-28 14:47:00,821 - INFO - Gold table revenue_per_course built with 183 rows.
+2025-08-28 14:47:00,821 - INFO - Building dropout_rate_per_course...
+2025-08-28 14:47:01,025 - INFO - Gold table dropout_rate_per_course built with 183 rows.
+2025-08-28 14:47:01,026 - INFO - Building total_spending_per_student...
+2025-08-28 14:47:02,967 - INFO - Gold table total_spending_per_student built with 25897 rows.
+2025-08-28 14:47:02,967 - INFO - Building pass_fail_rate...
+2025-08-28 14:47:03,190 - INFO - Gold table pass_fail_rate built with 183 rows.
+2025-08-28 14:47:03,851 - INFO - Student count consistency: {'silver_students': 49512} vs {'gold_total_revenue': 10086604.0}
+2025-08-28 14:47:03,943 - INFO - Total revenue reconciliation: {'silver_total_revenue': 10086604.0} vs {'gold_total_revenue': 10086604.0}
+2025-08-28 14:47:03,973 - INFO - Gold layer build completed successfully with validation.
+2025-08-28 14:47:03,973 - INFO - ✅ Gold Layer ready → Schema: gold, Tables: ['student_overview', 'students_with_no_payments', 'student_engagement', 'top_students_by_score', 'top_students_by_spending', 'course_payments_summary', 'course_assessment_summary', 'payment_method_distribution', 'students_with_active_courses', 'students_with_courses_not_attempted', 'revenue_per_course', 'dropout_rate_per_course', 'total_spending_per_student', 'pass_fail_rate']
+2025-08-28 14:47:03,974 - INFO - 🎉 ETL Pipeline Completed Successfully
+2025-08-28 15:05:27,428 - INFO - 🚀 Starting ETL Pipeline
+2025-08-28 15:05:27,428 - INFO - 📥 Bronze Layer (local)
+2025-08-28 15:05:27,438 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv → bronze.students
+2025-08-28 15:05:27,810 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv → bronze.courses
+2025-08-28 15:05:27,868 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv → bronze.enrollment
+2025-08-28 15:05:28,144 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv → bronze.assessment
+2025-08-28 15:05:28,395 - INFO - 📥 Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv → bronze.payments
+2025-08-28 15:05:28,701 - INFO - ✅ Bronze Layer ready → Schema: bronze, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 15:05:28,701 - INFO - ⚙️ Silver Layer (local)
+2025-08-28 15:05:28,710 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-28 15:05:28,711 - INFO - Starting silver layer build.
+2025-08-28 15:05:28,799 - INFO - Silver tables truncated.
+2025-08-28 15:05:31,931 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-28 15:05:34,179 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-28 15:05:37,101 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-28 15:05:37,208 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-28 15:05:37,218 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-28 15:05:39,771 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-28 15:05:41,958 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-28 15:05:44,439 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-28 15:05:46,600 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-08-28 15:05:53,851 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-28 15:05:58,058 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-28 15:06:01,630 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-28 15:06:07,474 - INFO - Silver layer build completed successfully.
+2025-08-28 15:06:07,493 - INFO - ✅ Silver Layer ready → Schema: silver, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-28 15:06:07,493 - INFO - 📊 Gold Layer (Supabase)
+2025-08-28 15:06:07,707 - INFO - ✅ Supabase connection successful.
+2025-08-28 15:06:07,708 - INFO - 🔗 Connecting as postgres.gtqgeindnvipmqvsfhta@aws-1-ap-south-1.pooler.supabase.com:5432/postgres
+2025-08-28 15:06:07,740 - INFO - Schema 'gold' ensured in local Postgres.
+2025-08-28 15:06:07,740 - INFO - Starting gold layer build (local Silver → Supabase Public).
+2025-08-28 15:06:08,275 - INFO - Dropped existing student_overview table in Supabase (public).
+2025-08-28 15:06:08,303 - INFO - Dropped existing students_with_no_payments table in Supabase (public).
+2025-08-28 15:06:08,331 - INFO - Dropped existing student_engagement table in Supabase (public).
+2025-08-28 15:06:08,360 - INFO - Dropped existing top_students_by_score table in Supabase (public).
+2025-08-28 15:06:08,390 - INFO - Dropped existing top_students_by_spending table in Supabase (public).
+2025-08-28 15:06:08,419 - INFO - Dropped existing course_payments_summary table in Supabase (public).
+2025-08-28 15:06:08,447 - INFO - Dropped existing course_assessment_summary table in Supabase (public).
+2025-08-28 15:06:08,475 - INFO - Dropped existing payment_method_distribution table in Supabase (public).
+2025-08-28 15:06:08,506 - INFO - Dropped existing students_with_active_courses table in Supabase (public).
+2025-08-28 15:06:08,536 - INFO - Dropped existing students_with_courses_not_attempted table in Supabase (public).
+2025-08-28 15:06:08,566 - INFO - Dropped existing revenue_per_course table in Supabase (public).
+2025-08-28 15:06:08,599 - INFO - Dropped existing dropout_rate_per_course table in Supabase (public).
+2025-08-28 15:06:08,628 - INFO - Dropped existing total_spending_per_student table in Supabase (public).
+2025-08-28 15:06:08,659 - INFO - Dropped existing pass_fail_rate table in Supabase (public).
+2025-08-28 15:06:08,708 - INFO - Building student_overview...
+2025-08-28 15:06:14,369 - INFO - Table public.student_overview built with 49512 rows in Supabase.
+2025-08-28 15:06:14,369 - INFO - Building students_with_no_payments...
+2025-08-28 15:06:16,083 - INFO - Table public.students_with_no_payments built with 23615 rows in Supabase.
+2025-08-28 15:06:16,084 - INFO - Building student_engagement...
+2025-08-28 15:06:16,303 - INFO - Table public.student_engagement built with 1 rows in Supabase.
+2025-08-28 15:06:16,303 - INFO - Building top_students_by_score...
+2025-08-28 15:06:18,666 - INFO - Table public.top_students_by_score built with 27903 rows in Supabase.
+2025-08-28 15:06:18,667 - INFO - Building top_students_by_spending...
+2025-08-28 15:06:21,044 - INFO - Table public.top_students_by_spending built with 25897 rows in Supabase.
+2025-08-28 15:06:21,045 - INFO - Building course_payments_summary...
+2025-08-28 15:06:21,253 - INFO - Table public.course_payments_summary built with 183 rows in Supabase.
+2025-08-28 15:06:21,254 - INFO - Building course_assessment_summary...
+2025-08-28 15:06:21,439 - INFO - Table public.course_assessment_summary built with 183 rows in Supabase.
+2025-08-28 15:06:21,439 - INFO - Building payment_method_distribution...
+2025-08-28 15:06:21,635 - INFO - Table public.payment_method_distribution built with 4 rows in Supabase.
+2025-08-28 15:06:21,636 - INFO - Building students_with_active_courses...
+2025-08-28 15:06:22,550 - INFO - Table public.students_with_active_courses built with 10027 rows in Supabase.
+2025-08-28 15:06:22,550 - INFO - Building students_with_courses_not_attempted...
+2025-08-28 15:06:24,323 - INFO - Table public.students_with_courses_not_attempted built with 24183 rows in Supabase.
+2025-08-28 15:06:24,323 - INFO - Building revenue_per_course...
+2025-08-28 15:06:24,503 - INFO - Table public.revenue_per_course built with 183 rows in Supabase.
+2025-08-28 15:06:24,504 - INFO - Building dropout_rate_per_course...
+2025-08-28 15:06:24,712 - INFO - Table public.dropout_rate_per_course built with 183 rows in Supabase.
+2025-08-28 15:06:24,712 - INFO - Building total_spending_per_student...
+2025-08-28 15:06:26,670 - INFO - Table public.total_spending_per_student built with 25897 rows in Supabase.
+2025-08-28 15:06:26,671 - INFO - Building pass_fail_rate...
+2025-08-28 15:06:26,875 - INFO - Table public.pass_fail_rate built with 183 rows in Supabase.
+2025-08-28 15:06:27,423 - INFO - Student count consistency: {'silver_students': 49512} vs {'supabase_total_revenue': 10086604.0}
+2025-08-28 15:06:27,507 - INFO - Total revenue reconciliation: {'silver_total_revenue': 10086604.0} vs {'supabase_total_revenue': 10086604.0}
+2025-08-28 15:06:27,535 - INFO - Gold → Public layer build completed successfully with validation.
+2025-08-28 15:06:27,535 - INFO - ✅ Gold Layer ready → Tables: ['student_overview', 'students_with_no_payments', 'student_engagement', 'top_students_by_score', 'top_students_by_spending', 'course_payments_summary', 'course_assessment_summary', 'payment_method_distribution', 'students_with_active_courses', 'students_with_courses_not_attempted', 'revenue_per_course', 'dropout_rate_per_course', 'total_spending_per_student', 'pass_fail_rate']
+2025-08-28 15:06:27,535 - INFO - 🎉 ETL Pipeline Completed Successfully
