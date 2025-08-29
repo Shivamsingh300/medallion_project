@@ -5,7 +5,7 @@ import psycopg2
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
+# Load environment variables
 load_dotenv()
 
 # --- Supabase (Public) DB Config ---
@@ -19,7 +19,7 @@ DB_CONFIG = {
 
 # --- Local (Silver/Gold) DB Config ---
 LOCAL_DB_CONFIG = {
-    "dbname": os.getenv("LOCAL_DB_NAME", "medallion"),  # default name
+    "dbname": os.getenv("LOCAL_DB_NAME", "medallion"),
     "user": os.getenv("LOCAL_DB_USER", "postgres"),
     "password": os.getenv("LOCAL_DB_PASSWORD", "password"),
     "host": os.getenv("LOCAL_DB_HOST", "localhost"),
@@ -27,8 +27,8 @@ LOCAL_DB_CONFIG = {
 }
 
 SILVER_SCHEMA = "silver"
-LOCAL_GOLD_SCHEMA = "gold"   # used only for local Postgres
-SUPABASE_SCHEMA = "public"   # used only for Supabase
+LOCAL_GOLD_SCHEMA = "gold"   # for local Postgres
+SUPABASE_SCHEMA = "public"  # used only for Supabase
 
 # -----------------------------------------------------------------------------
 # Gold Queries → becomes GOLD_TABLES
@@ -49,7 +49,8 @@ GOLD_TABLES = {
         SELECT DISTINCT
             s.student_id,
             s.name AS student_name,
-            s.email
+            s.email,
+            s.signup_date
         FROM silver.students s
         LEFT JOIN silver.payments p ON s.student_id = p.student_id
         WHERE p.student_id IS NULL;
@@ -78,7 +79,8 @@ GOLD_TABLES = {
             a.student_id,
             s.name AS student_name,
             s.email,
-            AVG(a.score) AS average_score
+            AVG(a.score) AS average_score,
+            MAX(a.attempt_date) AS last_attempt_date
         FROM silver.assessment a
         JOIN silver.students s ON a.student_id = s.student_id
         GROUP BY a.student_id, s.name, s.email
@@ -91,7 +93,8 @@ GOLD_TABLES = {
             s.name AS student_name,
             s.email,
             SUM(p.amount) AS total_spent,
-            COUNT(DISTINCT p.course_id) AS courses_purchased_count
+            COUNT(DISTINCT p.course_id) AS courses_purchased_count,
+            MAX(p.payment_date) AS last_payment_date
         FROM silver.payments p
         JOIN silver.students s ON p.student_id = s.student_id
         GROUP BY p.student_id, s.name, s.email
@@ -103,7 +106,9 @@ GOLD_TABLES = {
             c.course_id,
             c.course_name,
             SUM(p.amount) AS total_revenue,
-            COUNT(p.payment_id) AS total_payments
+            COUNT(p.payment_id) AS total_payments,
+            MIN(p.payment_date) AS first_payment_date,
+            MAX(p.payment_date) AS last_payment_date
         FROM silver.courses c
         JOIN silver.payments p ON c.course_id = p.course_id
         GROUP BY c.course_id, c.course_name
@@ -115,7 +120,8 @@ GOLD_TABLES = {
             c.course_id,
             c.course_name,
             AVG(a.score) AS avg_score,
-            COUNT(a.assessment_id) AS total_attempts
+            COUNT(a.assessment_id) AS total_attempts,
+            MAX(a.attempt_date) AS last_attempt_date
         FROM silver.courses c
         JOIN silver.assessment a ON c.course_id = a.course_id
         GROUP BY c.course_id, c.course_name
@@ -129,7 +135,8 @@ GOLD_TABLES = {
             SUM(amount) AS total_revenue,
             ROUND(COUNT(payment_id) * 100.0 / 
                 NULLIF((SELECT COUNT(*) FROM silver.payments), 0), 2
-            ) AS percentage_of_payments
+            ) AS percentage_of_payments,
+            MAX(payment_date) AS last_payment_date
         FROM silver.payments
         GROUP BY method
         ORDER BY total_revenue DESC;
@@ -139,7 +146,8 @@ GOLD_TABLES = {
         SELECT
             s.student_id,
             s.name AS student_name,
-            COUNT(e.enrollment_id) AS active_courses_count
+            COUNT(e.enrollment_id) AS active_courses_count,
+            MAX(e.enroll_date) AS last_enroll_date
         FROM silver.students s
         JOIN silver.enrollment e ON s.student_id = e.student_id
         WHERE e.status = 'active'
@@ -151,10 +159,12 @@ GOLD_TABLES = {
         SELECT
             s.student_id,
             s.name AS student_name,
-            COUNT(e.enrollment_id) AS courses_not_attempted_count
+            COUNT(e.enrollment_id) AS courses_not_attempted_count,
+            MAX(e.enroll_date) AS last_enroll_date
         FROM silver.students s
         JOIN silver.enrollment e ON s.student_id = e.student_id
-        LEFT JOIN silver.assessment a ON s.student_id = a.student_id AND e.course_id = a.course_id
+        LEFT JOIN silver.assessment a 
+            ON s.student_id = a.student_id AND e.course_id = a.course_id
         WHERE a.assessment_id IS NULL
         GROUP BY s.student_id, s.name
         ORDER BY courses_not_attempted_count DESC;
@@ -164,11 +174,12 @@ GOLD_TABLES = {
         SELECT
             c.course_name,
             c.category,
-            SUM(p.amount) AS total_revenue
+            SUM(p.amount) AS total_revenue,
+            DATE_TRUNC('month', p.payment_date) AS payment_month
         FROM silver.courses c
         JOIN silver.payments p ON c.course_id = p.course_id
-        GROUP BY c.course_name, c.category
-        ORDER BY total_revenue DESC;
+        GROUP BY c.course_name, c.category, DATE_TRUNC('month', p.payment_date)
+        ORDER BY payment_month, total_revenue DESC;
     """,
 
     "dropout_rate_per_course": """
@@ -179,7 +190,8 @@ GOLD_TABLES = {
             ROUND(
                 COUNT(CASE WHEN e.status = 'dropped' THEN 1 END) * 100.0 / 
                 NULLIF(COUNT(e.student_id), 0), 2
-            ) AS dropout_rate_percentage
+            ) AS dropout_rate_percentage,
+            MAX(e.enroll_date) AS last_enroll_date
         FROM silver.courses c
         JOIN silver.enrollment e ON c.course_id = e.course_id
         GROUP BY c.course_name
@@ -190,7 +202,8 @@ GOLD_TABLES = {
         SELECT
             s.student_id,
             s.name AS student_name,
-            SUM(p.amount) AS total_spent
+            SUM(p.amount) AS total_spent,
+            MAX(p.payment_date) AS last_payment_date
         FROM silver.students s
         JOIN silver.payments p ON s.student_id = p.student_id
         GROUP BY s.student_id, s.name
@@ -205,18 +218,19 @@ GOLD_TABLES = {
             ROUND(
                 COUNT(CASE WHEN a.score >= 70 THEN 1 END) * 100.0 / 
                 NULLIF(COUNT(a.score), 0), 2
-            ) AS pass_rate_percentage
+            ) AS pass_rate_percentage,
+            DATE_TRUNC('month', a.attempt_date) AS attempt_month
         FROM silver.courses c
         JOIN silver.assessment a ON c.course_id = a.course_id
-        GROUP BY c.course_name
-        ORDER BY pass_rate_percentage DESC;
+        GROUP BY c.course_name, DATE_TRUNC('month', a.attempt_date)
+        ORDER BY attempt_month, pass_rate_percentage DESC;
     """
 }
 
 # -----------------------------------------------------------------------------
 # Functions
 # -----------------------------------------------------------------------------
-def create_gold_schema_and_tables():
+def create_gold_schema_local():
     """Ensure gold schema exists in local Postgres."""
     try:
         conn = psycopg2.connect(**LOCAL_DB_CONFIG)
@@ -231,81 +245,54 @@ def create_gold_schema_and_tables():
         raise
 
 
-def validate_gold_data():
-    """Validate data quality: local Silver vs Supabase Public."""
-    try:
-        supabase_url = (
-            f"postgresql://{DB_CONFIG['user']}:{DB_CONFIG['password']}"
-            f"@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['dbname']}"
-        )
-        supabase_engine = create_engine(supabase_url)
-
-        local_url = (
-            f"postgresql://{LOCAL_DB_CONFIG['user']}:{LOCAL_DB_CONFIG['password']}"
-            f"@{LOCAL_DB_CONFIG['host']}:{LOCAL_DB_CONFIG['port']}/{LOCAL_DB_CONFIG['dbname']}"
-        )
-        local_engine = create_engine(local_url)
-
-        with supabase_engine.connect() as supabase_conn, local_engine.connect() as silver_conn:
-            validations = {
-                "Student count consistency": """
-                    SELECT COUNT(DISTINCT student_id) as silver_students FROM silver.students
-                """,
-                "Total revenue reconciliation": """
-                    SELECT COALESCE(SUM(amount), 0) as silver_total_revenue FROM silver.payments
-                """
-            }
-
-            for check_name, query in validations.items():
-                silver_result = pd.read_sql(query, silver_conn).to_dict("records")[0]
-                if "students" in check_name:
-                    gold_count = pd.read_sql(f"SELECT COUNT(DISTINCT student_id) as supabase_students FROM {SUPABASE_SCHEMA}.student_overview", supabase_conn).to_dict("records")[0]
-                    logging.info(f"{check_name}: {silver_result} vs {gold_count}")
-                else:
-                    gold_revenue = pd.read_sql(f"SELECT COALESCE(SUM(total_revenue),0) as supabase_total_revenue FROM {SUPABASE_SCHEMA}.course_payments_summary", supabase_conn).to_dict("records")[0]
-                    logging.info(f"{check_name}: {silver_result} vs {gold_revenue}")
-
-    except Exception as e:
-        logging.error(f"Error during validation: {e}")
-        raise
-
-
 def build_gold_layer():
-    """Build gold tables: read from local Silver → write to Supabase Public."""
-    logging.info("Starting gold layer build (local Silver → Supabase Public).")
+    """Build gold tables in both local Postgres (gold) and Supabase (public)."""
+    logging.info("Starting gold layer build (local Silver → Local Gold + Supabase Public).")
     try:
+        # Local engines
         local_url = (
             f"postgresql://{LOCAL_DB_CONFIG['user']}:{LOCAL_DB_CONFIG['password']}"
             f"@{LOCAL_DB_CONFIG['host']}:{LOCAL_DB_CONFIG['port']}/{LOCAL_DB_CONFIG['dbname']}"
         )
         local_engine = create_engine(local_url)
 
+        # Supabase engines
         supabase_url = (
             f"postgresql://{DB_CONFIG['user']}:{DB_CONFIG['password']}"
             f"@{DB_CONFIG['host']}:{DB_CONFIG['port']}/{DB_CONFIG['dbname']}"
         )
         supabase_engine = create_engine(supabase_url)
+
+        # Drop old tables in both local gold and supabase
+        with local_engine.begin() as conn:
+            for table_name in GOLD_TABLES.keys():
+                conn.execute(text(f"DROP TABLE IF EXISTS {LOCAL_GOLD_SCHEMA}.{table_name} CASCADE;"))
+                logging.info(f"Dropped existing {table_name} table in local gold schema.")
 
         with supabase_engine.begin() as conn:
-            # Drop old Public tables in Supabase
             for table_name in GOLD_TABLES.keys():
                 conn.execute(text(f"DROP TABLE IF EXISTS {SUPABASE_SCHEMA}.{table_name} CASCADE;"))
                 logging.info(f"Dropped existing {table_name} table in Supabase ({SUPABASE_SCHEMA}).")
 
-        # For each query: read from local → write to Supabase
+        # For each query: read from silver → write to both targets
         for table_name, query in GOLD_TABLES.items():
             logging.info(f"Building {table_name}...")
 
+            # Read from local silver schema
             df = pd.read_sql(query, local_engine)
-            df.to_sql(table_name, supabase_engine, schema=SUPABASE_SCHEMA, if_exists="replace", index=False)
 
+            # Write to local gold schema
+            df.to_sql(table_name, local_engine, schema=LOCAL_GOLD_SCHEMA, if_exists="replace", index=False)
+            logging.info(f"Table {LOCAL_GOLD_SCHEMA}.{table_name} built with {len(df)} rows in local Postgres.")
+
+            # Write to Supabase public schema
+            df.to_sql(table_name, supabase_engine, schema=SUPABASE_SCHEMA, if_exists="replace", index=False)
             logging.info(f"Table {SUPABASE_SCHEMA}.{table_name} built with {len(df)} rows in Supabase.")
 
-        validate_gold_data()
-        logging.info("Gold → Public layer build completed successfully with validation.")
+        logging.info("Gold layer build completed successfully in BOTH local and Supabase.")
 
     except Exception as e:
-        logging.error(f"Error while building Supabase public layer: {e}")
+        logging.error(f"Error while building gold layer: {e}")
         raise
 
 
@@ -315,5 +302,5 @@ if __name__ == "__main__":
         format="%(asctime)s - %(levelname)s - %(message)s",
         handlers=[logging.StreamHandler()],
     )
-    create_gold_schema_and_tables()
+    create_gold_schema_local()
     build_gold_layer()

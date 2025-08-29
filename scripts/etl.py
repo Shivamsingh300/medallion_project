@@ -15,9 +15,8 @@ from load_silver import (
     SILVER_SCHEMA,
 )
 from load_gold import (
-    create_gold_schema_and_tables,
     build_gold_layer,
-    GOLD_TABLES,   # ✅ removed GOLD_SCHEMA (no longer needed)
+    GOLD_TABLES,
 )
 
 # =====================
@@ -76,9 +75,9 @@ def test_supabase_connection():
     try:
         conn = psycopg2.connect(SUPABASE_CONN_STR)
         conn.close()
-        logging.info("✅ Supabase connection successful.")
+        logging.info("Supabase connection successful.")
     except Exception as e:
-        logging.error(f"❌ Supabase connection failed: {e}")
+        logging.error(f"Supabase connection failed: {e}")
         raise
 
 
@@ -88,37 +87,36 @@ def load_all_bronze():
     for table, filename in FILES.items():
         file_path = os.path.join(BASE_PATH, filename)
         if os.path.exists(file_path):
-            logging.info(f"📥 Loading {file_path} → {BRONZE_SCHEMA}.{table}")
+            logging.info(f"Loading {file_path} → {BRONZE_SCHEMA}.{table}")
             load_csv_to_table(file_path, table)
         else:
-            logging.warning(f"⚠️ File not found: {file_path}")
+            logging.warning(f"File not found: {file_path}")
 
 
 def run_etl():
     """Run full ETL pipeline: Bronze (local) → Silver (local) → Gold (Supabase)."""
-    logging.info("🚀 Starting ETL Pipeline")
+    logging.info("Starting ETL Pipeline")
 
     # Bronze
-    logging.info("📥 Bronze Layer (local)")
+    logging.info("Bronze Layer (local)")
     load_all_bronze()
-    logging.info(f"✅ Bronze Layer ready → Schema: {BRONZE_SCHEMA}, Tables: {BRONZE_TABLES}")
+    logging.info(f"Bronze Layer ready → Schema: {BRONZE_SCHEMA}, Tables: {BRONZE_TABLES}")
 
     # Silver
-    logging.info("⚙️ Silver Layer (local)")
+    logging.info("Silver Layer (local)")
     create_silver_schemas_and_tables()
     build_silver_layer()
-    logging.info(f"✅ Silver Layer ready → Schema: {SILVER_SCHEMA}, Tables: {list(SILVER_TABLES.keys())}")
+    logging.info(f"Silver Layer ready → Schema: {SILVER_SCHEMA}, Tables: {list(SILVER_TABLES.keys())}")
 
     # Gold (Supabase)
-    logging.info("📊 Gold Layer (Supabase)")
+    logging.info("Gold Layer (Supabase)")
     test_supabase_connection()
-    logging.info(f"🔗 Connecting as {DB_USER}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
+    logging.info(f"Connecting as {DB_USER}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
 
-    create_gold_schema_and_tables()
     build_gold_layer()
     logging.info(f"✅ Gold Layer ready → Tables: {list(GOLD_TABLES.keys())}")  # ✅ removed schema reference
 
-    logging.info("🎉 ETL Pipeline Completed Successfully")
+    logging.info("ETL Pipeline Completed Successfully")
 
 
 if __name__ == "__main__":
