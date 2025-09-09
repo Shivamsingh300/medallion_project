@@ -87,6 +87,15 @@ GOLD_TABLES = {
         ORDER BY AVG(a.score) DESC;
     """,
 
+"monthly_revenue_summary": """
+        SELECT
+            DATE_TRUNC('month', p.payment_date) AS payment_month,
+            SUM(p.amount) AS total_monthly_revenue
+        FROM silver.payments p
+        GROUP BY 1
+        ORDER BY payment_month;
+    """,
+
     "top_students_by_spending": """
         SELECT
             p.student_id,
@@ -211,19 +220,38 @@ GOLD_TABLES = {
     """,
 
     "pass_fail_rate": """
-        SELECT
-            c.course_name,
-            COUNT(CASE WHEN a.score >= 70 THEN 1 END) AS passing_students,
-            COUNT(CASE WHEN a.score < 70 THEN 1 END) AS failing_students,
-            ROUND(
-                COUNT(CASE WHEN a.score >= 70 THEN 1 END) * 100.0 / 
-                NULLIF(COUNT(a.score), 0), 2
-            ) AS pass_rate_percentage,
-            DATE_TRUNC('month', a.attempt_date) AS attempt_month
-        FROM silver.courses c
-        JOIN silver.assessment a ON c.course_id = a.course_id
-        GROUP BY c.course_name, DATE_TRUNC('month', a.attempt_date)
-        ORDER BY attempt_month, pass_rate_percentage DESC;
+       -- gold.pass_fail_rate (one row per course, latest attempt per student)
+WITH latest_attempt AS (
+  SELECT
+    a.course_id,
+    a.student_id,
+    a.score,
+    a.attempt_date,
+    ROW_NUMBER() OVER (
+      PARTITION BY a.course_id, a.student_id
+      ORDER BY a.attempt_date DESC, a.assessment_id DESC
+    ) AS rn
+  FROM silver.assessment a
+),
+per_student AS (
+  SELECT
+    course_id,
+    student_id,
+    CASE WHEN score >= 70 THEN 1 ELSE 0 END AS is_pass,
+    CASE WHEN score < 70 THEN 1 ELSE 0 END AS is_fail
+  FROM latest_attempt
+  WHERE rn = 1
+)
+SELECT
+  c.course_name,
+  SUM(is_fail)    AS failing_students,
+  SUM(is_pass)    AS passing_students,
+  ROUND(100.0 * SUM(is_pass) / NULLIF(SUM(is_pass) + SUM(is_fail), 0), 2) AS pass_rate_percentage
+FROM per_student ps
+JOIN silver.courses c ON c.course_id = ps.course_id
+GROUP BY c.course_name
+ORDER BY pass_rate_percentage DESC, course_name;
+
     """
 }
 

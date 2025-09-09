@@ -684,3 +684,356 @@ LINE 9:         FROM silver.students s
 2025-08-29 15:09:51,561 - INFO - Gold layer build completed successfully in BOTH local and Supabase.
 2025-08-29 15:09:51,562 - INFO - ✅ Gold Layer ready → Tables: ['student_overview', 'students_with_no_payments', 'student_engagement', 'top_students_by_score', 'top_students_by_spending', 'course_payments_summary', 'course_assessment_summary', 'payment_method_distribution', 'students_with_active_courses', 'students_with_courses_not_attempted', 'revenue_per_course', 'dropout_rate_per_course', 'total_spending_per_student', 'pass_fail_rate']
 2025-08-29 15:09:51,563 - INFO - ETL Pipeline Completed Successfully
+2025-08-31 21:56:51,727 - INFO - Starting ETL Pipeline
+2025-08-31 21:56:51,728 - INFO - Bronze Layer (local)
+2025-08-31 21:56:51,744 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv → bronze.students
+2025-08-31 21:56:52,109 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv → bronze.courses
+2025-08-31 21:56:52,139 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv → bronze.enrollment
+2025-08-31 21:56:52,410 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv → bronze.assessment
+2025-08-31 21:56:52,688 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv → bronze.payments
+2025-08-31 21:56:52,999 - INFO - Bronze Layer ready → Schema: bronze, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-31 21:56:53,000 - INFO - Silver Layer (local)
+2025-08-31 21:56:53,007 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-31 21:56:53,007 - INFO - Starting silver layer build.
+2025-08-31 21:56:53,098 - INFO - Silver tables truncated.
+2025-08-31 21:56:56,572 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-31 21:56:59,003 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-31 21:57:02,047 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-31 21:57:02,176 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-31 21:57:02,184 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-31 21:57:04,843 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-31 21:57:07,141 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-31 21:57:09,730 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-31 21:57:12,104 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-08-31 21:57:19,356 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-31 21:57:23,587 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-31 21:57:27,298 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-31 21:57:33,203 - INFO - Silver layer build completed successfully.
+2025-08-31 21:57:33,221 - INFO - Silver Layer ready → Schema: silver, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-31 21:57:33,221 - INFO - Gold Layer (Supabase)
+2025-08-31 21:57:33,661 - INFO - Supabase connection successful.
+2025-08-31 21:57:33,661 - INFO - Connecting as postgres.gtqgeindnvipmqvsfhta@aws-1-ap-south-1.pooler.supabase.com:5432/postgres
+2025-08-31 21:57:33,662 - INFO - Starting gold layer build (local Silver → Local Gold + Supabase Public).
+2025-08-31 21:57:33,707 - INFO - Dropped existing student_overview table in local gold schema.
+2025-08-31 21:57:33,710 - INFO - Dropped existing students_with_no_payments table in local gold schema.
+2025-08-31 21:57:33,712 - INFO - Dropped existing student_engagement table in local gold schema.
+2025-08-31 21:57:33,714 - INFO - Dropped existing top_students_by_score table in local gold schema.
+2025-08-31 21:57:33,717 - INFO - Dropped existing monthly_revenue_summary table in local gold schema.
+2025-08-31 21:57:33,720 - INFO - Dropped existing top_students_by_spending table in local gold schema.
+2025-08-31 21:57:33,722 - INFO - Dropped existing course_payments_summary table in local gold schema.
+2025-08-31 21:57:33,724 - INFO - Dropped existing course_assessment_summary table in local gold schema.
+2025-08-31 21:57:33,727 - INFO - Dropped existing payment_method_distribution table in local gold schema.
+2025-08-31 21:57:33,729 - INFO - Dropped existing students_with_active_courses table in local gold schema.
+2025-08-31 21:57:33,732 - INFO - Dropped existing students_with_courses_not_attempted table in local gold schema.
+2025-08-31 21:57:33,734 - INFO - Dropped existing revenue_per_course table in local gold schema.
+2025-08-31 21:57:33,736 - INFO - Dropped existing dropout_rate_per_course table in local gold schema.
+2025-08-31 21:57:33,739 - INFO - Dropped existing total_spending_per_student table in local gold schema.
+2025-08-31 21:57:33,741 - INFO - Dropped existing pass_fail_rate table in local gold schema.
+2025-08-31 21:57:34,390 - INFO - Dropped existing student_overview table in Supabase (public).
+2025-08-31 21:57:34,431 - INFO - Dropped existing students_with_no_payments table in Supabase (public).
+2025-08-31 21:57:34,470 - INFO - Dropped existing student_engagement table in Supabase (public).
+2025-08-31 21:57:34,509 - INFO - Dropped existing top_students_by_score table in Supabase (public).
+2025-08-31 21:57:34,545 - INFO - Dropped existing monthly_revenue_summary table in Supabase (public).
+2025-08-31 21:57:34,582 - INFO - Dropped existing top_students_by_spending table in Supabase (public).
+2025-08-31 21:57:34,621 - INFO - Dropped existing course_payments_summary table in Supabase (public).
+2025-08-31 21:57:34,657 - INFO - Dropped existing course_assessment_summary table in Supabase (public).
+2025-08-31 21:57:34,691 - INFO - Dropped existing payment_method_distribution table in Supabase (public).
+2025-08-31 21:57:34,730 - INFO - Dropped existing students_with_active_courses table in Supabase (public).
+2025-08-31 21:57:34,766 - INFO - Dropped existing students_with_courses_not_attempted table in Supabase (public).
+2025-08-31 21:57:34,804 - INFO - Dropped existing revenue_per_course table in Supabase (public).
+2025-08-31 21:57:34,838 - INFO - Dropped existing dropout_rate_per_course table in Supabase (public).
+2025-08-31 21:57:34,874 - INFO - Dropped existing total_spending_per_student table in Supabase (public).
+2025-08-31 21:57:34,909 - INFO - Dropped existing pass_fail_rate table in Supabase (public).
+2025-08-31 21:57:35,026 - INFO - Building student_overview...
+2025-08-31 21:57:36,403 - INFO - Table gold.student_overview built with 49512 rows in local Postgres.
+2025-08-31 21:57:42,765 - INFO - Table public.student_overview built with 49512 rows in Supabase.
+2025-08-31 21:57:42,765 - INFO - Building students_with_no_payments...
+2025-08-31 21:57:43,427 - INFO - Table gold.students_with_no_payments built with 23615 rows in local Postgres.
+2025-08-31 21:57:46,241 - INFO - Table public.students_with_no_payments built with 23615 rows in Supabase.
+2025-08-31 21:57:46,242 - INFO - Building student_engagement...
+2025-08-31 21:57:46,333 - INFO - Table gold.student_engagement built with 1 rows in local Postgres.
+2025-08-31 21:57:46,489 - INFO - Table public.student_engagement built with 1 rows in Supabase.
+2025-08-31 21:57:46,490 - INFO - Building top_students_by_score...
+2025-08-31 21:57:47,459 - INFO - Table gold.top_students_by_score built with 27903 rows in local Postgres.
+2025-08-31 21:57:51,110 - INFO - Table public.top_students_by_score built with 27903 rows in Supabase.
+2025-08-31 21:57:51,111 - INFO - Building monthly_revenue_summary...
+2025-08-31 21:57:51,177 - INFO - Table gold.monthly_revenue_summary built with 61 rows in local Postgres.
+2025-08-31 21:57:51,335 - INFO - Table public.monthly_revenue_summary built with 61 rows in Supabase.
+2025-08-31 21:57:51,335 - INFO - Building top_students_by_spending...
+2025-08-31 21:57:52,245 - INFO - Table gold.top_students_by_spending built with 25897 rows in local Postgres.
+2025-08-31 21:57:56,014 - INFO - Table public.top_students_by_spending built with 25897 rows in Supabase.
+2025-08-31 21:57:56,015 - INFO - Building course_payments_summary...
+2025-08-31 21:57:56,068 - INFO - Table gold.course_payments_summary built with 183 rows in local Postgres.
+2025-08-31 21:57:56,275 - INFO - Table public.course_payments_summary built with 183 rows in Supabase.
+2025-08-31 21:57:56,275 - INFO - Building course_assessment_summary...
+2025-08-31 21:57:56,315 - INFO - Table gold.course_assessment_summary built with 183 rows in local Postgres.
+2025-08-31 21:57:56,503 - INFO - Table public.course_assessment_summary built with 183 rows in Supabase.
+2025-08-31 21:57:56,503 - INFO - Building payment_method_distribution...
+2025-08-31 21:57:56,547 - INFO - Table gold.payment_method_distribution built with 4 rows in local Postgres.
+2025-08-31 21:57:56,703 - INFO - Table public.payment_method_distribution built with 4 rows in Supabase.
+2025-08-31 21:57:56,703 - INFO - Building students_with_active_courses...
+2025-08-31 21:57:57,032 - INFO - Table gold.students_with_active_courses built with 10027 rows in local Postgres.
+2025-08-31 21:57:58,253 - INFO - Table public.students_with_active_courses built with 10027 rows in Supabase.
+2025-08-31 21:57:58,254 - INFO - Building students_with_courses_not_attempted...
+2025-08-31 21:57:58,889 - INFO - Table gold.students_with_courses_not_attempted built with 24183 rows in local Postgres.
+2025-08-31 21:58:01,602 - INFO - Table public.students_with_courses_not_attempted built with 24183 rows in Supabase.
+2025-08-31 21:58:01,602 - INFO - Building revenue_per_course...
+2025-08-31 21:58:02,110 - INFO - Table gold.revenue_per_course built with 10556 rows in local Postgres.
+2025-08-31 21:58:03,319 - INFO - Table public.revenue_per_course built with 10556 rows in Supabase.
+2025-08-31 21:58:03,320 - INFO - Building dropout_rate_per_course...
+2025-08-31 21:58:03,369 - INFO - Table gold.dropout_rate_per_course built with 183 rows in local Postgres.
+2025-08-31 21:58:03,556 - INFO - Table public.dropout_rate_per_course built with 183 rows in Supabase.
+2025-08-31 21:58:03,556 - INFO - Building total_spending_per_student...
+2025-08-31 21:58:04,306 - INFO - Table gold.total_spending_per_student built with 25897 rows in local Postgres.
+2025-08-31 21:58:07,188 - INFO - Table public.total_spending_per_student built with 25897 rows in Supabase.
+2025-08-31 21:58:07,188 - INFO - Building pass_fail_rate...
+2025-08-31 21:58:07,754 - INFO - Table gold.pass_fail_rate built with 10705 rows in local Postgres.
+2025-08-31 21:58:09,172 - INFO - Table public.pass_fail_rate built with 10705 rows in Supabase.
+2025-08-31 21:58:09,172 - INFO - Gold layer build completed successfully in BOTH local and Supabase.
+2025-08-31 21:58:09,173 - INFO - ✅ Gold Layer ready → Tables: ['student_overview', 'students_with_no_payments', 'student_engagement', 'top_students_by_score', 'monthly_revenue_summary', 'top_students_by_spending', 'course_payments_summary', 'course_assessment_summary', 'payment_method_distribution', 'students_with_active_courses', 'students_with_courses_not_attempted', 'revenue_per_course', 'dropout_rate_per_course', 'total_spending_per_student', 'pass_fail_rate']
+2025-08-31 21:58:09,174 - INFO - ETL Pipeline Completed Successfully
+2025-08-31 22:19:34,942 - INFO - Starting ETL Pipeline
+2025-08-31 22:19:34,943 - INFO - Bronze Layer (local)
+2025-08-31 22:19:34,994 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv → bronze.students
+2025-08-31 22:19:36,155 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv → bronze.courses
+2025-08-31 22:19:36,217 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv → bronze.enrollment
+2025-08-31 22:19:37,149 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv → bronze.assessment
+2025-08-31 22:19:37,747 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv → bronze.payments
+2025-08-31 22:19:38,497 - INFO - Bronze Layer ready → Schema: bronze, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-31 22:19:38,497 - INFO - Silver Layer (local)
+2025-08-31 22:19:38,514 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-31 22:19:38,515 - INFO - Starting silver layer build.
+2025-08-31 22:19:38,698 - INFO - Silver tables truncated.
+2025-08-31 22:19:45,160 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-31 22:19:49,647 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-31 22:19:55,190 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-31 22:19:55,357 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-31 22:19:55,373 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-31 22:20:01,243 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-31 22:20:03,696 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-31 22:20:06,023 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-31 22:20:08,298 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-08-31 22:20:16,383 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-31 22:20:20,279 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-31 22:20:23,796 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-31 22:20:29,694 - INFO - Silver layer build completed successfully.
+2025-08-31 22:20:29,702 - INFO - Silver Layer ready → Schema: silver, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-31 22:20:29,702 - INFO - Gold Layer (Supabase)
+2025-08-31 22:21:28,585 - INFO - Supabase connection successful.
+2025-08-31 22:21:28,585 - INFO - Connecting as postgres.gtqgeindnvipmqvsfhta@aws-1-ap-south-1.pooler.supabase.com:5432/postgres
+2025-08-31 22:21:28,585 - INFO - Starting gold layer build (local Silver → Local Gold + Supabase Public).
+2025-08-31 22:21:28,601 - INFO - Dropped existing student_overview table in local gold schema.
+2025-08-31 22:21:28,602 - INFO - Dropped existing students_with_no_payments table in local gold schema.
+2025-08-31 22:21:28,603 - INFO - Dropped existing student_engagement table in local gold schema.
+2025-08-31 22:21:28,604 - INFO - Dropped existing top_students_by_score table in local gold schema.
+2025-08-31 22:21:28,605 - INFO - Dropped existing monthly_revenue_summary table in local gold schema.
+2025-08-31 22:21:28,606 - INFO - Dropped existing top_students_by_spending table in local gold schema.
+2025-08-31 22:21:28,606 - INFO - Dropped existing course_payments_summary table in local gold schema.
+2025-08-31 22:21:28,607 - INFO - Dropped existing course_assessment_summary table in local gold schema.
+2025-08-31 22:21:28,608 - INFO - Dropped existing payment_method_distribution table in local gold schema.
+2025-08-31 22:21:28,608 - INFO - Dropped existing students_with_active_courses table in local gold schema.
+2025-08-31 22:21:28,609 - INFO - Dropped existing students_with_courses_not_attempted table in local gold schema.
+2025-08-31 22:21:28,610 - INFO - Dropped existing revenue_per_course table in local gold schema.
+2025-08-31 22:21:28,611 - INFO - Dropped existing dropout_rate_per_course table in local gold schema.
+2025-08-31 22:21:28,611 - INFO - Dropped existing total_spending_per_student table in local gold schema.
+2025-08-31 22:21:28,612 - INFO - Dropped existing pass_fail_rate table in local gold schema.
+2025-08-31 22:21:29,312 - INFO - Dropped existing student_overview table in Supabase (public).
+2025-08-31 22:21:29,347 - INFO - Dropped existing students_with_no_payments table in Supabase (public).
+2025-08-31 22:21:29,379 - INFO - Dropped existing student_engagement table in Supabase (public).
+2025-08-31 22:21:29,416 - INFO - Dropped existing top_students_by_score table in Supabase (public).
+2025-08-31 22:21:29,448 - INFO - Dropped existing monthly_revenue_summary table in Supabase (public).
+2025-08-31 22:21:29,482 - INFO - Dropped existing top_students_by_spending table in Supabase (public).
+2025-08-31 22:21:29,519 - INFO - Dropped existing course_payments_summary table in Supabase (public).
+2025-08-31 22:21:29,554 - INFO - Dropped existing course_assessment_summary table in Supabase (public).
+2025-08-31 22:21:29,588 - INFO - Dropped existing payment_method_distribution table in Supabase (public).
+2025-08-31 22:21:29,622 - INFO - Dropped existing students_with_active_courses table in Supabase (public).
+2025-08-31 22:21:29,655 - INFO - Dropped existing students_with_courses_not_attempted table in Supabase (public).
+2025-08-31 22:21:29,691 - INFO - Dropped existing revenue_per_course table in Supabase (public).
+2025-08-31 22:21:29,724 - INFO - Dropped existing dropout_rate_per_course table in Supabase (public).
+2025-08-31 22:21:29,763 - INFO - Dropped existing total_spending_per_student table in Supabase (public).
+2025-08-31 22:21:29,797 - INFO - Dropped existing pass_fail_rate table in Supabase (public).
+2025-08-31 22:21:29,945 - INFO - Building student_overview...
+2025-08-31 22:21:31,381 - INFO - Table gold.student_overview built with 49512 rows in local Postgres.
+2025-08-31 22:21:36,548 - INFO - Table public.student_overview built with 49512 rows in Supabase.
+2025-08-31 22:21:36,548 - INFO - Building students_with_no_payments...
+2025-08-31 22:21:37,175 - INFO - Table gold.students_with_no_payments built with 23615 rows in local Postgres.
+2025-08-31 22:21:39,466 - INFO - Table public.students_with_no_payments built with 23615 rows in Supabase.
+2025-08-31 22:21:39,466 - INFO - Building student_engagement...
+2025-08-31 22:21:39,546 - INFO - Table gold.student_engagement built with 1 rows in local Postgres.
+2025-08-31 22:21:39,700 - INFO - Table public.student_engagement built with 1 rows in Supabase.
+2025-08-31 22:21:39,700 - INFO - Building top_students_by_score...
+2025-08-31 22:21:40,670 - INFO - Table gold.top_students_by_score built with 27903 rows in local Postgres.
+2025-08-31 22:21:43,446 - INFO - Table public.top_students_by_score built with 27903 rows in Supabase.
+2025-08-31 22:21:43,446 - INFO - Building monthly_revenue_summary...
+2025-08-31 22:21:43,499 - INFO - Table gold.monthly_revenue_summary built with 61 rows in local Postgres.
+2025-08-31 22:21:43,652 - INFO - Table public.monthly_revenue_summary built with 61 rows in Supabase.
+2025-08-31 22:21:43,652 - INFO - Building top_students_by_spending...
+2025-08-31 22:21:44,638 - INFO - Table gold.top_students_by_spending built with 25897 rows in local Postgres.
+2025-08-31 22:21:47,990 - INFO - Table public.top_students_by_spending built with 25897 rows in Supabase.
+2025-08-31 22:21:47,990 - INFO - Building course_payments_summary...
+2025-08-31 22:21:48,052 - INFO - Table gold.course_payments_summary built with 183 rows in local Postgres.
+2025-08-31 22:21:48,238 - INFO - Table public.course_payments_summary built with 183 rows in Supabase.
+2025-08-31 22:21:48,238 - INFO - Building course_assessment_summary...
+2025-08-31 22:21:48,281 - INFO - Table gold.course_assessment_summary built with 183 rows in local Postgres.
+2025-08-31 22:21:48,461 - INFO - Table public.course_assessment_summary built with 183 rows in Supabase.
+2025-08-31 22:21:48,461 - INFO - Building payment_method_distribution...
+2025-08-31 22:21:48,508 - INFO - Table gold.payment_method_distribution built with 4 rows in local Postgres.
+2025-08-31 22:21:48,662 - INFO - Table public.payment_method_distribution built with 4 rows in Supabase.
+2025-08-31 22:21:48,662 - INFO - Building students_with_active_courses...
+2025-08-31 22:21:48,989 - INFO - Table gold.students_with_active_courses built with 10027 rows in local Postgres.
+2025-08-31 22:21:50,235 - INFO - Table public.students_with_active_courses built with 10027 rows in Supabase.
+2025-08-31 22:21:50,235 - INFO - Building students_with_courses_not_attempted...
+2025-08-31 22:21:50,903 - INFO - Table gold.students_with_courses_not_attempted built with 24183 rows in local Postgres.
+2025-08-31 22:21:53,363 - INFO - Table public.students_with_courses_not_attempted built with 24183 rows in Supabase.
+2025-08-31 22:21:53,363 - INFO - Building revenue_per_course...
+2025-08-31 22:21:54,019 - INFO - Table gold.revenue_per_course built with 10556 rows in local Postgres.
+2025-08-31 22:21:55,268 - INFO - Table public.revenue_per_course built with 10556 rows in Supabase.
+2025-08-31 22:21:55,268 - INFO - Building dropout_rate_per_course...
+2025-08-31 22:21:55,339 - INFO - Table gold.dropout_rate_per_course built with 183 rows in local Postgres.
+2025-08-31 22:21:55,511 - INFO - Table public.dropout_rate_per_course built with 183 rows in Supabase.
+2025-08-31 22:21:55,511 - INFO - Building total_spending_per_student...
+2025-08-31 22:21:56,285 - INFO - Table gold.total_spending_per_student built with 25897 rows in local Postgres.
+2025-08-31 22:21:59,171 - INFO - Table public.total_spending_per_student built with 25897 rows in Supabase.
+2025-08-31 22:21:59,172 - INFO - Building pass_fail_rate...
+2025-08-31 22:21:59,803 - INFO - Table gold.pass_fail_rate built with 10705 rows in local Postgres.
+2025-08-31 22:22:01,231 - INFO - Table public.pass_fail_rate built with 10705 rows in Supabase.
+2025-08-31 22:22:01,231 - INFO - Gold layer build completed successfully in BOTH local and Supabase.
+2025-08-31 22:22:01,232 - INFO - ✅ Gold Layer ready → Tables: ['student_overview', 'students_with_no_payments', 'student_engagement', 'top_students_by_score', 'monthly_revenue_summary', 'top_students_by_spending', 'course_payments_summary', 'course_assessment_summary', 'payment_method_distribution', 'students_with_active_courses', 'students_with_courses_not_attempted', 'revenue_per_course', 'dropout_rate_per_course', 'total_spending_per_student', 'pass_fail_rate']
+2025-08-31 22:22:01,233 - INFO - ETL Pipeline Completed Successfully
+2025-08-31 23:09:07,283 - INFO - Starting ETL Pipeline
+2025-08-31 23:09:07,286 - INFO - Bronze Layer (local)
+2025-08-31 23:09:07,336 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv → bronze.students
+2025-08-31 23:09:09,065 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv → bronze.courses
+2025-08-31 23:09:09,116 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv → bronze.enrollment
+2025-08-31 23:09:09,918 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv → bronze.assessment
+2025-08-31 23:09:10,558 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv → bronze.payments
+2025-08-31 23:09:11,518 - INFO - Bronze Layer ready → Schema: bronze, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-31 23:09:11,518 - INFO - Silver Layer (local)
+2025-08-31 23:09:11,548 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-08-31 23:09:11,548 - INFO - Starting silver layer build.
+2025-08-31 23:09:11,832 - INFO - Silver tables truncated.
+2025-08-31 23:09:18,352 - WARNING - 5488 faulty rows in students - Missing city
+2025-08-31 23:09:22,189 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-08-31 23:09:25,224 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-08-31 23:09:25,328 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-08-31 23:09:25,336 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-08-31 23:09:28,095 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-08-31 23:09:31,043 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-08-31 23:09:33,834 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-08-31 23:09:36,164 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-08-31 23:09:44,240 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-08-31 23:09:48,724 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-08-31 23:09:52,573 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-08-31 23:09:59,608 - INFO - Silver layer build completed successfully.
+2025-08-31 23:09:59,616 - INFO - Silver Layer ready → Schema: silver, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-08-31 23:09:59,617 - INFO - Gold Layer (Supabase)
+2025-08-31 23:10:59,969 - ERROR - Supabase connection failed: connection to server at "aws-1-ap-south-1.pooler.supabase.com" (3.111.225.200), port 5432 failed: FATAL:  MaxClientsInSessionMode: max clients reached - in Session mode max clients are limited to pool_size
+
+2025-09-01 11:59:35,391 - INFO - Starting ETL Pipeline
+2025-09-01 11:59:35,391 - INFO - Bronze Layer (local)
+2025-09-01 11:59:35,400 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/students.csv → bronze.students
+2025-09-01 11:59:35,722 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/courses.csv → bronze.courses
+2025-09-01 11:59:35,737 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/enrollment.csv → bronze.enrollment
+2025-09-01 11:59:35,994 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/assessment.csv → bronze.assessment
+2025-09-01 11:59:36,248 - INFO - Loading /home/nineleaps/medallion_project/bronze_inputs/payments.csv → bronze.payments
+2025-09-01 11:59:36,535 - INFO - Bronze Layer ready → Schema: bronze, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-09-01 11:59:36,535 - INFO - Silver Layer (local)
+2025-09-01 11:59:36,545 - INFO - Schemas 'silver' and 'audit' ensured with required tables.
+2025-09-01 11:59:36,545 - INFO - Starting silver layer build.
+2025-09-01 11:59:36,651 - INFO - Silver tables truncated.
+2025-09-01 11:59:40,426 - WARNING - 5488 faulty rows in students - Missing city
+2025-09-01 11:59:43,068 - WARNING - 5015 faulty rows in students - Whitespace in email
+2025-09-01 11:59:48,390 - WARNING - 6387 faulty rows in students - Invalid casing in name
+2025-09-01 11:59:48,493 - WARNING - 191 faulty rows in courses - Invalid casing in category
+2025-09-01 11:59:48,502 - WARNING - 17 faulty rows in courses - Price out of range [50,500]
+2025-09-01 11:59:51,083 - WARNING - 5562 faulty rows in enrollment - Invalid status enum
+2025-09-01 11:59:53,626 - WARNING - 4945 faulty rows in assessment - Score out of range [0,100]
+2025-09-01 11:59:57,697 - WARNING - 5415 faulty rows in payments - Amount out of range [50,500]
+2025-09-01 12:00:01,551 - WARNING - 4860 faulty rows in payments - Invalid method enum
+2025-09-01 12:00:09,415 - WARNING - 16007 faulty rows in enrollment - Invalid FK student_id/course_id
+2025-09-01 12:00:13,166 - WARNING - 9033 faulty rows in assessment - Invalid FK student_id/course_id
+2025-09-01 12:00:16,588 - WARNING - 8092 faulty rows in payments - Invalid FK student_id/course_id
+2025-09-01 12:00:22,202 - INFO - Silver layer build completed successfully.
+2025-09-01 12:00:22,209 - INFO - Silver Layer ready → Schema: silver, Tables: ['students', 'courses', 'enrollment', 'assessment', 'payments']
+2025-09-01 12:00:22,210 - INFO - Gold Layer (Supabase)
+2025-09-01 12:00:22,426 - INFO - Supabase connection successful.
+2025-09-01 12:00:22,426 - INFO - Connecting as postgres.gtqgeindnvipmqvsfhta@aws-1-ap-south-1.pooler.supabase.com:5432/postgres
+2025-09-01 12:00:22,426 - INFO - Starting gold layer build (local Silver → Local Gold + Supabase Public).
+2025-09-01 12:00:22,459 - INFO - Dropped existing student_overview table in local gold schema.
+2025-09-01 12:00:22,460 - INFO - Dropped existing students_with_no_payments table in local gold schema.
+2025-09-01 12:00:22,461 - INFO - Dropped existing student_engagement table in local gold schema.
+2025-09-01 12:00:22,462 - INFO - Dropped existing top_students_by_score table in local gold schema.
+2025-09-01 12:00:22,462 - INFO - Dropped existing monthly_revenue_summary table in local gold schema.
+2025-09-01 12:00:22,463 - INFO - Dropped existing top_students_by_spending table in local gold schema.
+2025-09-01 12:00:22,464 - INFO - Dropped existing course_payments_summary table in local gold schema.
+2025-09-01 12:00:22,464 - INFO - Dropped existing course_assessment_summary table in local gold schema.
+2025-09-01 12:00:22,465 - INFO - Dropped existing payment_method_distribution table in local gold schema.
+2025-09-01 12:00:22,466 - INFO - Dropped existing students_with_active_courses table in local gold schema.
+2025-09-01 12:00:22,466 - INFO - Dropped existing students_with_courses_not_attempted table in local gold schema.
+2025-09-01 12:00:22,467 - INFO - Dropped existing revenue_per_course table in local gold schema.
+2025-09-01 12:00:22,468 - INFO - Dropped existing dropout_rate_per_course table in local gold schema.
+2025-09-01 12:00:22,468 - INFO - Dropped existing total_spending_per_student table in local gold schema.
+2025-09-01 12:00:22,469 - INFO - Dropped existing pass_fail_rate table in local gold schema.
+2025-09-01 12:00:23,130 - INFO - Dropped existing student_overview table in Supabase (public).
+2025-09-01 12:00:23,160 - INFO - Dropped existing students_with_no_payments table in Supabase (public).
+2025-09-01 12:00:23,190 - INFO - Dropped existing student_engagement table in Supabase (public).
+2025-09-01 12:00:23,230 - INFO - Dropped existing top_students_by_score table in Supabase (public).
+2025-09-01 12:00:23,259 - INFO - Dropped existing monthly_revenue_summary table in Supabase (public).
+2025-09-01 12:00:23,293 - INFO - Dropped existing top_students_by_spending table in Supabase (public).
+2025-09-01 12:00:23,327 - INFO - Dropped existing course_payments_summary table in Supabase (public).
+2025-09-01 12:00:23,357 - INFO - Dropped existing course_assessment_summary table in Supabase (public).
+2025-09-01 12:00:23,390 - INFO - Dropped existing payment_method_distribution table in Supabase (public).
+2025-09-01 12:00:23,422 - INFO - Dropped existing students_with_active_courses table in Supabase (public).
+2025-09-01 12:00:23,456 - INFO - Dropped existing students_with_courses_not_attempted table in Supabase (public).
+2025-09-01 12:00:23,489 - INFO - Dropped existing revenue_per_course table in Supabase (public).
+2025-09-01 12:00:23,520 - INFO - Dropped existing dropout_rate_per_course table in Supabase (public).
+2025-09-01 12:00:23,553 - INFO - Dropped existing total_spending_per_student table in Supabase (public).
+2025-09-01 12:00:23,586 - INFO - Dropped existing pass_fail_rate table in Supabase (public).
+2025-09-01 12:00:23,740 - INFO - Building student_overview...
+2025-09-01 12:00:25,209 - INFO - Table gold.student_overview built with 49512 rows in local Postgres.
+2025-09-01 12:00:29,483 - INFO - Table public.student_overview built with 49512 rows in Supabase.
+2025-09-01 12:00:29,483 - INFO - Building students_with_no_payments...
+2025-09-01 12:00:30,102 - INFO - Table gold.students_with_no_payments built with 23615 rows in local Postgres.
+2025-09-01 12:00:31,927 - INFO - Table public.students_with_no_payments built with 23615 rows in Supabase.
+2025-09-01 12:00:31,927 - INFO - Building student_engagement...
+2025-09-01 12:00:32,015 - INFO - Table gold.student_engagement built with 1 rows in local Postgres.
+2025-09-01 12:00:32,158 - INFO - Table public.student_engagement built with 1 rows in Supabase.
+2025-09-01 12:00:32,159 - INFO - Building top_students_by_score...
+2025-09-01 12:00:33,056 - INFO - Table gold.top_students_by_score built with 27903 rows in local Postgres.
+2025-09-01 12:00:35,559 - INFO - Table public.top_students_by_score built with 27903 rows in Supabase.
+2025-09-01 12:00:35,559 - INFO - Building monthly_revenue_summary...
+2025-09-01 12:00:35,619 - INFO - Table gold.monthly_revenue_summary built with 61 rows in local Postgres.
+2025-09-01 12:00:35,769 - INFO - Table public.monthly_revenue_summary built with 61 rows in Supabase.
+2025-09-01 12:00:35,769 - INFO - Building top_students_by_spending...
+2025-09-01 12:00:36,697 - INFO - Table gold.top_students_by_spending built with 25897 rows in local Postgres.
+2025-09-01 12:00:39,138 - INFO - Table public.top_students_by_spending built with 25897 rows in Supabase.
+2025-09-01 12:00:39,138 - INFO - Building course_payments_summary...
+2025-09-01 12:00:39,192 - INFO - Table gold.course_payments_summary built with 183 rows in local Postgres.
+2025-09-01 12:00:39,337 - INFO - Table public.course_payments_summary built with 183 rows in Supabase.
+2025-09-01 12:00:39,337 - INFO - Building course_assessment_summary...
+2025-09-01 12:00:39,368 - INFO - Table gold.course_assessment_summary built with 183 rows in local Postgres.
+2025-09-01 12:00:39,520 - INFO - Table public.course_assessment_summary built with 183 rows in Supabase.
+2025-09-01 12:00:39,520 - INFO - Building payment_method_distribution...
+2025-09-01 12:00:39,602 - INFO - Table gold.payment_method_distribution built with 4 rows in local Postgres.
+2025-09-01 12:00:39,741 - INFO - Table public.payment_method_distribution built with 4 rows in Supabase.
+2025-09-01 12:00:39,741 - INFO - Building students_with_active_courses...
+2025-09-01 12:00:40,045 - INFO - Table gold.students_with_active_courses built with 10027 rows in local Postgres.
+2025-09-01 12:00:40,882 - INFO - Table public.students_with_active_courses built with 10027 rows in Supabase.
+2025-09-01 12:00:40,883 - INFO - Building students_with_courses_not_attempted...
+2025-09-01 12:00:41,517 - INFO - Table gold.students_with_courses_not_attempted built with 24183 rows in local Postgres.
+2025-09-01 12:00:43,171 - INFO - Table public.students_with_courses_not_attempted built with 24183 rows in Supabase.
+2025-09-01 12:00:43,171 - INFO - Building revenue_per_course...
+2025-09-01 12:00:43,696 - INFO - Table gold.revenue_per_course built with 10556 rows in local Postgres.
+2025-09-01 12:00:44,562 - INFO - Table public.revenue_per_course built with 10556 rows in Supabase.
+2025-09-01 12:00:44,562 - INFO - Building dropout_rate_per_course...
+2025-09-01 12:00:44,597 - INFO - Table gold.dropout_rate_per_course built with 183 rows in local Postgres.
+2025-09-01 12:00:44,736 - INFO - Table public.dropout_rate_per_course built with 183 rows in Supabase.
+2025-09-01 12:00:44,736 - INFO - Building total_spending_per_student...
+2025-09-01 12:00:45,422 - INFO - Table gold.total_spending_per_student built with 25897 rows in local Postgres.
+2025-09-01 12:00:47,326 - INFO - Table public.total_spending_per_student built with 25897 rows in Supabase.
+2025-09-01 12:00:47,326 - INFO - Building pass_fail_rate...
+2025-09-01 12:00:47,451 - INFO - Table gold.pass_fail_rate built with 183 rows in local Postgres.
+2025-09-01 12:00:47,611 - INFO - Table public.pass_fail_rate built with 183 rows in Supabase.
+2025-09-01 12:00:47,611 - INFO - Gold layer build completed successfully in BOTH local and Supabase.
+2025-09-01 12:00:47,611 - INFO - ✅ Gold Layer ready → Tables: ['student_overview', 'students_with_no_payments', 'student_engagement', 'top_students_by_score', 'monthly_revenue_summary', 'top_students_by_spending', 'course_payments_summary', 'course_assessment_summary', 'payment_method_distribution', 'students_with_active_courses', 'students_with_courses_not_attempted', 'revenue_per_course', 'dropout_rate_per_course', 'total_spending_per_student', 'pass_fail_rate']
+2025-09-01 12:00:47,611 - INFO - ETL Pipeline Completed Successfully
